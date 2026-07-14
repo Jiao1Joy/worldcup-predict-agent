@@ -1,0 +1,119 @@
+# ===== 敏感信息（绝不提交）=====
+.env
+.env.*
+*.key
+*.pem
+config.local.yaml
+secrets.json
+# config.yaml 里会含 API key 的"引用"，但若有人直接写了明文 key 也要防：
+# （正常实现是只放环境变量名，不放明文 key）
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虚拟环境
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+.python-version
+
+# 测试 / 覆盖率
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ===== Node.js / 前端 =====
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+.pnpm-store/
+.yarn/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.vite/
+
+# ===== 数据与产物（体积大/可重新生成，不入库）=====
+data/raw/
+data/snapshots/*.csv
+data/results/*.json
+!data/results/.gitkeep
+*.parquet
+*.feather
+*.h5
+# 模型产物
+*.pkl
+*.joblib
+*.bin
+*.model
+*.lgb
+*.xgb
+*.cbm
+
+# ===== IDE / 编辑器 =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ===== 临时与备份 =====
+*.tmp
+*.bak
+*.orig
+*.rej
+.cache/
+tmp/
+temp/
+
+# ===== ZCode / Claude 工作区（本地开发痕迹）=====
+.zcode/
+.claude/
+.agents/
