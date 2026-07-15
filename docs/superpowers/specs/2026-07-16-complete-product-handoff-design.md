@@ -30,7 +30,7 @@ Coding Agent 遇到冲突时必须按以下顺序裁决：
 3. `docs/superpowers/specs/2026-07-15-agent-workbench-design.md`；
 4. `docs/superpowers/plans/2026-07-15-agent-runtime-foundation.md`；
 5. `docs/superpowers/plans/2026-07-15-agent-workbench-ui.md`；
-6. 原始 `TECHNICAL_REPORT.md`，仅作为预测算法与产品需求来源；
+6. `docs/TECHNICAL_REPORT_MAPPING.md`，记录原技术报告的保留、修订与替代关系；
 7. 参考项目和临时代码。
 
 以下冲突已经裁决，不允许 Coding Agent 自行改回：
@@ -301,6 +301,7 @@ docs/
 GET  /api/health
 GET  /api/artifacts/current
 POST /api/forecasts
+GET  /api/forecasts/current
 GET  /api/forecasts/{forecast_id}
 GET  /api/forecasts/{forecast_id}/matches/{match_id}
 GET  /api/forecasts/{forecast_id}/bracket
@@ -390,13 +391,14 @@ POST /api/runs/{run_id}/approve
 
 严格按以下顺序执行：
 
-1. Prediction Engine；
-2. Tournament Simulator；
-3. 将真实领域工具接入 Agent Runtime；
-4. Forecast Result API 与产品 UI；
-5. 真实 LLM Provider 与结构化解释；
-6. 系统集成、fixture、容器和验收；
-7. 最后才删除或隔离 Demo Tools。
+1. 现有 Agent Runtime Foundation 计划，先建立后端包、事件与工具基础设施；
+2. 现有 Agent Workbench UI 计划，先建立前端包与执行过程页面；
+3. Prediction Engine；
+4. Tournament Simulator；
+5. 真实 LLM Provider，并将 Prediction/Tournament 工具接入 Agent Runtime；
+6. Forecast Result API 与产品 UI；
+7. 系统集成、fixture、容器和验收；
+8. 最后才隔离 Demo Tools，使其只在测试与离线故障场景使用。
 
 前一个阶段的 completion gate 未通过，不开始下一个阶段。Coding Agent 每完成一个 Task 都必须运行指定测试并提交，不能一次生成全部文件后统一调试。
 
