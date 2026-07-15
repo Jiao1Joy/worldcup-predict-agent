@@ -13,7 +13,9 @@
 3. `docs/superpowers/specs/2026-07-15-agent-workbench-design.md`
 4. 本文件下方的实施计划顺序
 
-聊天记录、参考项目和旧技术报告不能覆盖上述文件。
+可选背景材料：`docs/archive/TECHNICAL_REPORT_ORIGINAL.md`。它用于了解早期方案和设计演进，不是实施依据；具体裁决见 `docs/TECHNICAL_REPORT_MAPPING.md`。
+
+聊天记录、参考项目和归档技术报告不能覆盖上述文件。
 
 ## 3. 实施计划顺序
 

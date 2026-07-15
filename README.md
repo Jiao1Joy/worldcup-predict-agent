@@ -51,6 +51,8 @@ flowchart LR
 - [`ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md)：执行入口、实施顺序、权限边界和停止条件
 - [`完整产品交接设计`](docs/superpowers/specs/2026-07-16-complete-product-handoff-design.md)：产品单一事实源
 - [`TECHNICAL_REPORT_MAPPING.md`](docs/TECHNICAL_REPORT_MAPPING.md)：原技术报告内容的保留、修订与替代关系
+- [`原技术报告（历史归档）`](docs/archive/TECHNICAL_REPORT_ORIGINAL.md)：保留早期完整方案与设计演进，不作为当前实施依据
+- [`历史技术报告归档说明`](docs/archive/README.md)：归档定位和文档优先级
 - [`Agent Workbench 设计`](docs/superpowers/specs/2026-07-15-agent-workbench-design.md)：Agent 展示层与交互设计
 
 ### 七份实施计划
