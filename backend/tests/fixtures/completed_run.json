@@ -1,6 +1,6 @@
 {
   "initial_state": {
-    "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+    "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
     "task_spec": {
       "intent": "predict_tournament",
       "seed": 7
@@ -19,7 +19,7 @@
     "event_sequence": 0
   },
   "state": {
-    "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+    "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
     "task_spec": {
       "intent": "predict_tournament",
       "seed": 7
@@ -103,7 +103,7 @@
     },
     "decisions": [
       {
-        "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+        "decision_id": "39d36ffe-c5df-4939-bcdf-51a7b06c3d34",
         "observation": "probability_delta=0.018",
         "rule": "probability_delta > 0.005",
         "action": "simulate_more",
@@ -118,18 +118,18 @@
       "SIM-30000-7"
     ],
     "errors": [],
-    "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03",
+    "checkpoint_id": "bdd3559c-a954-40c9-9445-48603b062f91",
     "event_sequence": 15
   },
   "events": [
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 1,
       "event_type": "plan",
       "step_id": null,
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:29.915723Z",
+      "created_at": "2026-07-16T01:58:12.245631Z",
       "payload": {
         "stages": [
           "collect",
@@ -146,28 +146,28 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 2,
       "event_type": "checkpoint",
       "step_id": null,
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:29.953358Z",
+      "created_at": "2026-07-16T01:58:12.282069Z",
       "payload": {
         "patch": {
-          "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03"
+          "checkpoint_id": "bdd3559c-a954-40c9-9445-48603b062f91"
         },
-        "state_hash": "ece22d8e6697a01e267902efa8063cdf8ce71d494f00aadea06b05cbb9cb60ca"
+        "state_hash": "f5e5368b2357d8b32923f4ffe3e15ab9bbc164451f66372def08af6de44f9476"
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 3,
       "event_type": "tool",
       "step_id": "collect",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:29.990693Z",
+      "created_at": "2026-07-16T01:58:12.311127Z",
       "payload": {
         "tool": "collect_snapshot",
         "input": {
@@ -182,13 +182,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 4,
       "event_type": "state",
       "step_id": "collect",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.003100Z",
+      "created_at": "2026-07-16T01:58:12.320702Z",
       "payload": {
         "patch": {
           "status": "running",
@@ -215,13 +215,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 5,
       "event_type": "decision",
       "step_id": "refresh_snapshot",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.016968Z",
+      "created_at": "2026-07-16T01:58:12.333987Z",
       "payload": {
         "observation": "age_hours=25.0",
         "rule": "age_hours > 24",
@@ -230,13 +230,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 6,
       "event_type": "tool",
       "step_id": "refresh_snapshot",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.029194Z",
+      "created_at": "2026-07-16T01:58:12.345691Z",
       "payload": {
         "tool": "collect_snapshot",
         "input": {
@@ -251,13 +251,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 7,
       "event_type": "state",
       "step_id": "refresh_snapshot",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.041047Z",
+      "created_at": "2026-07-16T01:58:12.358239Z",
       "payload": {
         "patch": {
           "data_snapshot": {
@@ -294,13 +294,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 8,
       "event_type": "tool",
       "step_id": "simulate",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.052969Z",
+      "created_at": "2026-07-16T01:58:12.370081Z",
       "payload": {
         "tool": "simulate_tournament",
         "input": {
@@ -320,13 +320,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 9,
       "event_type": "state",
       "step_id": "simulate",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.061897Z",
+      "created_at": "2026-07-16T01:58:12.379407Z",
       "payload": {
         "patch": {
           "tournament_state": {
@@ -387,15 +387,15 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 10,
       "event_type": "decision",
       "step_id": "simulate_more",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.072284Z",
+      "created_at": "2026-07-16T01:58:12.392688Z",
       "payload": {
-        "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+        "decision_id": "39d36ffe-c5df-4939-bcdf-51a7b06c3d34",
         "observation": "probability_delta=0.018",
         "rule": "probability_delta > 0.005",
         "action": "simulate_more",
@@ -406,13 +406,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 11,
       "event_type": "tool",
       "step_id": "simulate_more",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.114062Z",
+      "created_at": "2026-07-16T01:58:12.404938Z",
       "payload": {
         "tool": "simulate_tournament",
         "input": {
@@ -432,18 +432,18 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 12,
       "event_type": "state",
       "step_id": "simulate_more",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.126359Z",
+      "created_at": "2026-07-16T01:58:12.416956Z",
       "payload": {
         "patch": {
           "decisions": [
             {
-              "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+              "decision_id": "39d36ffe-c5df-4939-bcdf-51a7b06c3d34",
               "observation": "probability_delta=0.018",
               "rule": "probability_delta > 0.005",
               "action": "simulate_more",
@@ -528,13 +528,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 13,
       "event_type": "guardrail",
       "step_id": "critique",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.136280Z",
+      "created_at": "2026-07-16T01:58:12.429437Z",
       "payload": {
         "check": "evidence_coverage",
         "result": "pass",
@@ -545,13 +545,13 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 14,
       "event_type": "state",
       "step_id": "critique",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.146436Z",
+      "created_at": "2026-07-16T01:58:12.439008Z",
       "payload": {
         "patch": {
           "current_step_id": "critique"
@@ -559,18 +559,18 @@
       }
     },
     {
-      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "run_id": "beb9931a-1a2b-4643-a503-ac215ed23133",
       "sequence": 15,
       "event_type": "complete",
       "step_id": "explain",
       "tool_call_id": null,
       "parent_step_id": null,
-      "created_at": "2026-07-16T01:56:30.164367Z",
+      "created_at": "2026-07-16T01:58:12.461778Z",
       "payload": {
         "patch": {
           "status": "completed",
           "current_step_id": "explain",
-          "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03"
+          "checkpoint_id": "bdd3559c-a954-40c9-9445-48603b062f91"
         }
       }
     }

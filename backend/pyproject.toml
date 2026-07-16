@@ -12,6 +12,12 @@ dependencies = [
   "langgraph>=0.2,<1",
   "pydantic>=2.10,<3",
   "uvicorn[standard]>=0.34,<1",
+  "joblib>=1.4,<2",
+  "numpy>=2.1,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=18,<20",
+  "scikit-learn>=1.6,<2",
+  "scipy>=1.14,<2",
 ]
 
 [project.optional-dependencies]
@@ -21,9 +27,17 @@ dev = [
   "pytest-asyncio>=0.25,<1",
   "ruff>=0.9,<1",
 ]
+full-training = [
+  "catboost>=1.2,<2",
+  "lightgbm>=4.5,<5",
+  "xgboost>=2.1,<3",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+worldcup-rebuild = "worldcup_agent.cli.rebuild:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,0 +1,16 @@
+date,home_team,away_team,home_score,away_score,tournament,city,country,neutral
+2022-06-01,Team A,Team B,2,1,Friendly,CityA,CountryA,FALSE
+2022-07-01,Team C,Team D,0,0,Friendly,CityC,CountryC,FALSE
+2022-08-01,Team A,Team C,3,2,Friendly,CityA,CountryA,FALSE
+2022-09-01,Team B,Team D,1,1,Friendly,CityB,CountryB,FALSE
+2022-10-01,Team A,Team D,2,0,Friendly,CityA,CountryA,FALSE
+2022-10-15,Team C,Team B,1,0,Friendly,CityC,CountryC,FALSE
+2022-11-10,Team D,Team A,0,3,Friendly,CityD,CountryD,FALSE
+2022-11-18,Team B,Team C,2,2,Friendly,CityB,CountryB,FALSE
+2022-11-20,Team A,Team B,1,0,FIFA World Cup,Qatar,Qatar,TRUE
+2022-11-21,Team C,Team D,2,1,FIFA World Cup,Qatar,Qatar,TRUE
+2022-11-25,Team A,Team C,0,0,FIFA World Cup,Qatar,Qatar,TRUE
+2022-11-26,Team B,Team D,1,2,FIFA World Cup,Qatar,Qatar,TRUE
+2022-11-30,Team A,Team D,3,1,FIFA World Cup,Qatar,Qatar,TRUE
+2022-12-01,Team B,Team C,0,1,FIFA World Cup,Qatar,Qatar,TRUE
+2022-12-15,Team A,Team C,2,1,FIFA World Cup,Qatar,Qatar,TRUE
