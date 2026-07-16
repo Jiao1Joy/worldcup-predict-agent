@@ -20,8 +20,9 @@
 | 产品范围与架构 | 已完成 | 目标、边界、数据合同、API、UI 与验收标准已定义 |
 | Coding Agent 交接 | 已完成 | 7 份实施计划，合计 61 个 Task、366 个待执行步骤 |
 | 后端 Agent Runtime | 已完成 | LangGraph 编排、工具注册表、SQLite 持久化、检查点恢复、人工审批、FastAPI/SSE |
-| 预测引擎与赛事模拟 | 待实现 | 当前没有模型 artifact 或真实预测结果 |
+| 预测引擎与赛事模拟 | 已完成 | Elo、三种进球模型、IPF 校准、2022 回测、495 Annexe C、104 场模拟、蒙特卡洛 |
 | 前端 Agent Workbench | 已完成 | React + xyflow Run Graph、Step Inspector、Replay、故障注入、移动端适配 |
+| 前端预测产品 UI | 已完成 | Overview、赛程树、单场/球队详情、2022 回测、Agent Workbench 联动 |
 | 测试、Docker、CI 与验收报告 | 待实现 | 必须由 Coding Agent 实际运行后生成，不能以计划中的预期结果代替 |
 
 ## 目标架构

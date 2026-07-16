@@ -1,0 +1,36 @@
+/* Product UI shared styles layered on top of styles.css */
+.page { max-width: 1480px; margin: 0 auto; padding: 24px; }
+.top-nav { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.top-nav a { color: var(--accent); text-decoration: none; }
+
+.champion-hero h1 { font-size: 36px; margin: 4px 0; }
+.champion-probability { font-size: 28px; color: var(--accent); font-variant-numeric: tabular-nums; }
+.versions { color: var(--muted); font-size: 0.85rem; }
+.primary { display: inline-block; margin-top: 12px; padding: 10px 16px; background: var(--accent); color: #06231e; border-radius: 8px; text-decoration: none; font-weight: 600; }
+
+.team-table table { width: 100%; border-collapse: collapse; }
+.team-table th, .team-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: right; font-variant-numeric: tabular-nums; }
+.team-table th:first-child, .team-table td:first-child { text-align: left; }
+
+.bracket-columns { display: grid; grid-template-columns: repeat(6, minmax(180px, 1fr)); gap: 12px; overflow-x: auto; }
+.bracket-column h2 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.match-card { display: grid; gap: 2px; padding: 10px; background: var(--surface); border-radius: 8px; text-decoration: none; color: var(--color, #e7edf7); }
+.match-card .team.winner { color: var(--accent); font-weight: 600; }
+.match-card .badge { font-size: 0.7rem; color: var(--muted); }
+.match-card .vs { color: var(--muted); font-size: 0.75rem; }
+
+.metrics-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.metrics-strip div { background: var(--surface); padding: 14px; border-radius: 10px; text-align: center; }
+.metrics-strip strong { display: block; color: var(--muted); font-size: 0.8rem; }
+.metrics-strip span { font-size: 24px; font-variant-numeric: tabular-nums; }
+.metrics-strip small { display: block; color: var(--accent); font-size: 0.7rem; }
+
+.chart-card, .bracket, .team-table, .metrics-strip { margin-top: 24px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (max-width: 860px) {
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .bracket-columns { grid-template-columns: 1fr; }
+  .match-card { overflow-wrap: anywhere; min-width: 0; }
+  .page { padding: 12px; max-width: 100%; overflow-x: hidden; }
+}
