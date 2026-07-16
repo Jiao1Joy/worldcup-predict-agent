@@ -19,7 +19,8 @@
 | --- | --- | --- |
 | 产品范围与架构 | 已完成 | 目标、边界、数据合同、API、UI 与验收标准已定义 |
 | Coding Agent 交接 | 已完成 | 7 份实施计划，合计 61 个 Task、366 个待执行步骤 |
-| 后端、预测引擎与赛事模拟 | 待实现 | 当前没有 Python 源码、模型 artifact 或真实预测结果 |
+| 后端 Agent Runtime | 已完成 | LangGraph 编排、工具注册表、SQLite 持久化、检查点恢复、人工审批、FastAPI/SSE |
+| 预测引擎与赛事模拟 | 待实现 | 当前没有模型 artifact 或真实预测结果 |
 | 前端与 Agent Workbench | 待实现 | 当前没有 React 应用或可运行页面 |
 | 测试、Docker、CI 与验收报告 | 待实现 | 必须由 Coding Agent 实际运行后生成，不能以计划中的预期结果代替 |
 
@@ -43,6 +44,14 @@ flowchart LR
 从 [`docs/ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md) 开始。Coding Agent 应先阅读完整产品设计，再严格按七份计划的既定顺序逐 Task 执行 TDD、验证和提交；只有当前计划的 Completion Gate 通过后，才能进入下一阶段。
 
 推荐启动指令已写在交接指南中。最终完成依据不是生成了多少文件，而是系统集成计划产出的 `ACCEPTANCE_REPORT` 和对应的实际测试证据。
+
+### 本地启动 Agent Runtime（已实现）
+
+```powershell
+cd backend
+python -m pip install -e ".[dev]"
+uvicorn worldcup_agent.api.app:app --reload --port 8000
+```
 
 ## 文档导航
 

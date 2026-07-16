@@ -1,0 +1,578 @@
+{
+  "initial_state": {
+    "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+    "task_spec": {
+      "intent": "predict_tournament",
+      "seed": 7
+    },
+    "status": "pending",
+    "current_step_id": null,
+    "step_statuses": {},
+    "data_snapshot": {},
+    "model_snapshot": {},
+    "tournament_state": {},
+    "tool_results": {},
+    "decisions": [],
+    "evidence_refs": [],
+    "errors": [],
+    "checkpoint_id": null,
+    "event_sequence": 0
+  },
+  "state": {
+    "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+    "task_spec": {
+      "intent": "predict_tournament",
+      "seed": 7
+    },
+    "status": "completed",
+    "current_step_id": "explain",
+    "step_statuses": {},
+    "data_snapshot": {
+      "snapshot_id": "DATA-20260715",
+      "age_hours": 0.0,
+      "teams": 48,
+      "fixtures": 104
+    },
+    "model_snapshot": {},
+    "tournament_state": {
+      "batch_id": "SIM-30000-7",
+      "runs": 30000,
+      "champion_probabilities": {
+        "Spain": 0.28769371291950846,
+        "Argentina": 0.13401472503728692,
+        "France": 0.5782915620432046
+      },
+      "probability_delta": 0.004,
+      "total_runs": 30000
+    },
+    "tool_results": {
+      "collect": {
+        "input": {
+          "force_refresh": false
+        },
+        "output": {
+          "snapshot_id": "DATA-20260715",
+          "age_hours": 25.0,
+          "teams": 48,
+          "fixtures": 104
+        }
+      },
+      "refresh_snapshot": {
+        "input": {
+          "force_refresh": true
+        },
+        "output": {
+          "snapshot_id": "DATA-20260715",
+          "age_hours": 0.0,
+          "teams": 48,
+          "fixtures": 104
+        }
+      },
+      "simulate": {
+        "input": {
+          "runs": 20000,
+          "seed": 7
+        },
+        "output": {
+          "batch_id": "SIM-20000-7",
+          "runs": 20000,
+          "champion_probabilities": {
+            "Spain": 0.28769371291950846,
+            "Argentina": 0.13401472503728692,
+            "France": 0.5782915620432046
+          },
+          "probability_delta": 0.018
+        }
+      },
+      "simulate_more": {
+        "input": {
+          "runs": 30000,
+          "seed": 7
+        },
+        "output": {
+          "batch_id": "SIM-30000-7",
+          "runs": 30000,
+          "champion_probabilities": {
+            "Spain": 0.28769371291950846,
+            "Argentina": 0.13401472503728692,
+            "France": 0.5782915620432046
+          },
+          "probability_delta": 0.004
+        }
+      }
+    },
+    "decisions": [
+      {
+        "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+        "observation": "probability_delta=0.018",
+        "rule": "probability_delta > 0.005",
+        "action": "simulate_more",
+        "reason": "champion probability has not converged",
+        "evidence_ids": [
+          "SIM-20000-7"
+        ]
+      }
+    ],
+    "evidence_refs": [
+      "SIM-20000-7",
+      "SIM-30000-7"
+    ],
+    "errors": [],
+    "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03",
+    "event_sequence": 15
+  },
+  "events": [
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 1,
+      "event_type": "plan",
+      "step_id": null,
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:29.915723Z",
+      "payload": {
+        "stages": [
+          "collect",
+          "validate",
+          "predict",
+          "simulate",
+          "critique",
+          "explain"
+        ],
+        "task_spec": {
+          "intent": "predict_tournament",
+          "seed": 7
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 2,
+      "event_type": "checkpoint",
+      "step_id": null,
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:29.953358Z",
+      "payload": {
+        "patch": {
+          "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03"
+        },
+        "state_hash": "ece22d8e6697a01e267902efa8063cdf8ce71d494f00aadea06b05cbb9cb60ca"
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 3,
+      "event_type": "tool",
+      "step_id": "collect",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:29.990693Z",
+      "payload": {
+        "tool": "collect_snapshot",
+        "input": {
+          "force_refresh": false
+        },
+        "output": {
+          "snapshot_id": "DATA-20260715",
+          "age_hours": 25.0,
+          "teams": 48,
+          "fixtures": 104
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 4,
+      "event_type": "state",
+      "step_id": "collect",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.003100Z",
+      "payload": {
+        "patch": {
+          "status": "running",
+          "data_snapshot": {
+            "snapshot_id": "DATA-20260715",
+            "age_hours": 25.0,
+            "teams": 48,
+            "fixtures": 104
+          },
+          "tool_results": {
+            "collect": {
+              "input": {
+                "force_refresh": false
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 25.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 5,
+      "event_type": "decision",
+      "step_id": "refresh_snapshot",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.016968Z",
+      "payload": {
+        "observation": "age_hours=25.0",
+        "rule": "age_hours > 24",
+        "action": "refresh_snapshot",
+        "reason": "stale inputs would invalidate the forecast"
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 6,
+      "event_type": "tool",
+      "step_id": "refresh_snapshot",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.029194Z",
+      "payload": {
+        "tool": "collect_snapshot",
+        "input": {
+          "force_refresh": true
+        },
+        "output": {
+          "snapshot_id": "DATA-20260715",
+          "age_hours": 0.0,
+          "teams": 48,
+          "fixtures": 104
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 7,
+      "event_type": "state",
+      "step_id": "refresh_snapshot",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.041047Z",
+      "payload": {
+        "patch": {
+          "data_snapshot": {
+            "snapshot_id": "DATA-20260715",
+            "age_hours": 0.0,
+            "teams": 48,
+            "fixtures": 104
+          },
+          "tool_results": {
+            "collect": {
+              "input": {
+                "force_refresh": false
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 25.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            },
+            "refresh_snapshot": {
+              "input": {
+                "force_refresh": true
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 0.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 8,
+      "event_type": "tool",
+      "step_id": "simulate",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.052969Z",
+      "payload": {
+        "tool": "simulate_tournament",
+        "input": {
+          "runs": 20000,
+          "seed": 7
+        },
+        "output": {
+          "batch_id": "SIM-20000-7",
+          "runs": 20000,
+          "champion_probabilities": {
+            "Spain": 0.28769371291950846,
+            "Argentina": 0.13401472503728692,
+            "France": 0.5782915620432046
+          },
+          "probability_delta": 0.018
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 9,
+      "event_type": "state",
+      "step_id": "simulate",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.061897Z",
+      "payload": {
+        "patch": {
+          "tournament_state": {
+            "batch_id": "SIM-20000-7",
+            "runs": 20000,
+            "champion_probabilities": {
+              "Spain": 0.28769371291950846,
+              "Argentina": 0.13401472503728692,
+              "France": 0.5782915620432046
+            },
+            "probability_delta": 0.018,
+            "total_runs": 20000
+          },
+          "tool_results": {
+            "collect": {
+              "input": {
+                "force_refresh": false
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 25.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            },
+            "refresh_snapshot": {
+              "input": {
+                "force_refresh": true
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 0.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            },
+            "simulate": {
+              "input": {
+                "runs": 20000,
+                "seed": 7
+              },
+              "output": {
+                "batch_id": "SIM-20000-7",
+                "runs": 20000,
+                "champion_probabilities": {
+                  "Spain": 0.28769371291950846,
+                  "Argentina": 0.13401472503728692,
+                  "France": 0.5782915620432046
+                },
+                "probability_delta": 0.018
+              }
+            }
+          },
+          "evidence_refs": [
+            "SIM-20000-7"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 10,
+      "event_type": "decision",
+      "step_id": "simulate_more",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.072284Z",
+      "payload": {
+        "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+        "observation": "probability_delta=0.018",
+        "rule": "probability_delta > 0.005",
+        "action": "simulate_more",
+        "reason": "champion probability has not converged",
+        "evidence_ids": [
+          "SIM-20000-7"
+        ]
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 11,
+      "event_type": "tool",
+      "step_id": "simulate_more",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.114062Z",
+      "payload": {
+        "tool": "simulate_tournament",
+        "input": {
+          "runs": 30000,
+          "seed": 7
+        },
+        "output": {
+          "batch_id": "SIM-30000-7",
+          "runs": 30000,
+          "champion_probabilities": {
+            "Spain": 0.28769371291950846,
+            "Argentina": 0.13401472503728692,
+            "France": 0.5782915620432046
+          },
+          "probability_delta": 0.004
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 12,
+      "event_type": "state",
+      "step_id": "simulate_more",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.126359Z",
+      "payload": {
+        "patch": {
+          "decisions": [
+            {
+              "decision_id": "b77c550e-374a-4975-b235-5f52679b8da1",
+              "observation": "probability_delta=0.018",
+              "rule": "probability_delta > 0.005",
+              "action": "simulate_more",
+              "reason": "champion probability has not converged",
+              "evidence_ids": [
+                "SIM-20000-7"
+              ]
+            }
+          ],
+          "tournament_state": {
+            "batch_id": "SIM-30000-7",
+            "runs": 30000,
+            "champion_probabilities": {
+              "Spain": 0.28769371291950846,
+              "Argentina": 0.13401472503728692,
+              "France": 0.5782915620432046
+            },
+            "probability_delta": 0.004,
+            "total_runs": 30000
+          },
+          "tool_results": {
+            "collect": {
+              "input": {
+                "force_refresh": false
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 25.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            },
+            "refresh_snapshot": {
+              "input": {
+                "force_refresh": true
+              },
+              "output": {
+                "snapshot_id": "DATA-20260715",
+                "age_hours": 0.0,
+                "teams": 48,
+                "fixtures": 104
+              }
+            },
+            "simulate": {
+              "input": {
+                "runs": 20000,
+                "seed": 7
+              },
+              "output": {
+                "batch_id": "SIM-20000-7",
+                "runs": 20000,
+                "champion_probabilities": {
+                  "Spain": 0.28769371291950846,
+                  "Argentina": 0.13401472503728692,
+                  "France": 0.5782915620432046
+                },
+                "probability_delta": 0.018
+              }
+            },
+            "simulate_more": {
+              "input": {
+                "runs": 30000,
+                "seed": 7
+              },
+              "output": {
+                "batch_id": "SIM-30000-7",
+                "runs": 30000,
+                "champion_probabilities": {
+                  "Spain": 0.28769371291950846,
+                  "Argentina": 0.13401472503728692,
+                  "France": 0.5782915620432046
+                },
+                "probability_delta": 0.004
+              }
+            }
+          },
+          "evidence_refs": [
+            "SIM-20000-7",
+            "SIM-30000-7"
+          ]
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 13,
+      "event_type": "guardrail",
+      "step_id": "critique",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.136280Z",
+      "payload": {
+        "check": "evidence_coverage",
+        "result": "pass",
+        "evidence_ids": [
+          "SIM-20000-7",
+          "SIM-30000-7"
+        ]
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 14,
+      "event_type": "state",
+      "step_id": "critique",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.146436Z",
+      "payload": {
+        "patch": {
+          "current_step_id": "critique"
+        }
+      }
+    },
+    {
+      "run_id": "16a16f36-c924-4690-8301-1a742d78b4eb",
+      "sequence": 15,
+      "event_type": "complete",
+      "step_id": "explain",
+      "tool_call_id": null,
+      "parent_step_id": null,
+      "created_at": "2026-07-16T01:56:30.164367Z",
+      "payload": {
+        "patch": {
+          "status": "completed",
+          "current_step_id": "explain",
+          "checkpoint_id": "2117c59e-5341-49dc-a03c-70e5becc3e03"
+        }
+      }
+    }
+  ]
+}
