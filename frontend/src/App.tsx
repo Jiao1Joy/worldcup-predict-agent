@@ -1,17 +1,44 @@
 import { useState } from 'react';
+import { ResultSummary } from './components/ResultSummary';
+import { Workbench } from './components/Workbench';
+import { useRunController } from './state/use-run-controller';
+import { completedRunFixture } from './test/completed-run';
+
+const demoRunId = import.meta.env.VITE_DEMO_RUN_ID as string | undefined;
+
+function FixtureAgentApp() {
+  const [showWorkbench, setShowWorkbench] = useState(false);
+  return showWorkbench ? (
+    <Workbench
+      initialState={completedRunFixture.initial_state}
+      initialRun={completedRunFixture.state}
+      initialEvents={completedRunFixture.events}
+    />
+  ) : (
+    <ResultSummary onOpenWorkbench={() => setShowWorkbench(true)} />
+  );
+}
+
+function LiveAgentApp({ runId }: { runId: string }) {
+  const [showWorkbench, setShowWorkbench] = useState(false);
+  const controller = useRunController(runId);
+  if (!showWorkbench) {
+    return <ResultSummary onOpenWorkbench={() => setShowWorkbench(true)} />;
+  }
+  if (!controller.run || !controller.initialRun) {
+    return <main aria-live="polite">Loading Agent run…</main>;
+  }
+  return (
+    <Workbench
+      initialState={controller.initialRun}
+      initialRun={controller.run}
+      initialEvents={controller.events}
+      onInjectFailure={controller.injectFailure}
+      onApprove={(choice) => controller.approve(choice, 'portfolio-user')}
+    />
+  );
+}
 
 export function App() {
-  const [showWorkbench, setShowWorkbench] = useState(false);
-  return (
-    <main>
-      <h1>World Cup Prediction Agent</h1>
-      {showWorkbench ? (
-        <section aria-label="Agent Workbench">Workbench loading…</section>
-      ) : (
-        <button type="button" onClick={() => setShowWorkbench(true)}>
-          View Agent Run
-        </button>
-      )}
-    </main>
-  );
+  return demoRunId ? <LiveAgentApp runId={demoRunId} /> : <FixtureAgentApp />;
 }
