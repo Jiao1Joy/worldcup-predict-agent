@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.sqlite3
+*.db
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+.playwright/
+test-results/
+playwright-report/
+
+# Environment & secrets
+.env
+.env.local
+*.key
+
+# Generated large artifacts (not demo bundle)
+artifacts/generated/
+artifacts/full/
+raw_downloads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
