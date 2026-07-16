@@ -15,6 +15,12 @@ from worldcup_agent.storage.sqlite import SQLiteRunStore
 from worldcup_agent.tools.registry import ToolRegistry
 
 
+def _build_production_graph(registry, observer):
+    from worldcup_agent.runtime.production_graph import build_production_graph
+
+    return build_production_graph(registry, observer)
+
+
 class EventRecorder:
     def __init__(self, store: SQLiteRunStore, run_id: str, sequence: int) -> None:
         self.store = store
@@ -35,9 +41,17 @@ class EventRecorder:
 
 
 class AgentRuntimeService:
-    def __init__(self, store: SQLiteRunStore, registry: ToolRegistry) -> None:
+    def __init__(
+        self,
+        store: SQLiteRunStore,
+        registry: ToolRegistry,
+        planner=None,
+        production: bool = False,
+    ) -> None:
         self.store = store
         self.registry = registry
+        self.planner = planner
+        self.production = production
 
     async def create_run(self, task_spec: dict) -> RunState:
         state = RunState(run_id=str(uuid4()), task_spec=task_spec)
@@ -153,28 +167,46 @@ class AgentRuntimeService:
         recorder: EventRecorder,
         failure_mode: str | None = None,
     ) -> RunState:
-        graph = build_runtime_graph(self.registry, recorder.emit, failure_mode)
+        if self.production:
+            graph = _build_production_graph(self.registry, recorder.emit)
+            final_step = "publish"
+        else:
+            graph = build_runtime_graph(self.registry, recorder.emit, failure_mode)
+            final_step = "explain"
         try:
             result = await graph.ainvoke(state.model_dump(mode="json"))
             tournament = result.get("tournament_state", {})
+            evidence_items = []
             if tournament.get("batch_id"):
-                await self.store.save_evidence(
-                    state.run_id,
+                evidence_items.append(
                     EvidenceItem(
                         evidence_id=tournament["batch_id"],
                         kind="simulation_batch",
-                        value=tournament["champion_probabilities"],
+                        value=tournament.get("champion_probabilities", {}),
                         source="demo-simulator",
                         version=f"seed-{state.task_spec.get('seed', 7)}",
-                    ),
+                    )
                 )
+            for evidence_id in result.get("evidence_refs", []):
+                if evidence_id.startswith("FORECAST-") or evidence_id.startswith("SIM-"):
+                    evidence_items.append(
+                        EvidenceItem(
+                            evidence_id=evidence_id,
+                            kind="forecast",
+                            value=tournament.get("team_probabilities", tournament.get("champion_probabilities", {})),
+                            source="tournament-service",
+                            version=str(state.task_spec.get("seed", 20260611)),
+                        )
+                    )
+            for item in evidence_items:
+                await self.store.save_evidence(state.run_id, item)
             await recorder.emit(
                 EventType.COMPLETE,
-                "explain",
+                final_step,
                 {
                     "patch": {
                         "status": "completed",
-                        "current_step_id": "explain",
+                        "current_step_id": final_step,
                         "checkpoint_id": state.checkpoint_id,
                     }
                 },
@@ -182,7 +214,7 @@ class AgentRuntimeService:
             completed = RunState.model_validate(result).model_copy(
                 update={
                     "status": RunStatus.COMPLETED,
-                    "current_step_id": "explain",
+                    "current_step_id": final_step,
                     "checkpoint_id": state.checkpoint_id,
                     "event_sequence": recorder.sequence,
                 }

@@ -7,10 +7,10 @@ from worldcup_agent.api.dependencies import build_service
 from worldcup_agent.api.routes.runs import router as runs_router
 
 
-def create_app(sqlite_path: str | Path = "agent.sqlite3") -> FastAPI:
+def create_app(sqlite_path: str | Path = "agent.sqlite3", mode: str = "demo") -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        app.state.runtime_service = await build_service(sqlite_path)
+        app.state.runtime_service = await build_service(sqlite_path, mode=mode)
         yield
 
     app = FastAPI(title="World Cup Prediction Agent", lifespan=lifespan)

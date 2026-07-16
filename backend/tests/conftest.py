@@ -61,3 +61,50 @@ def simulator(rules, deterministic_predictor):
     from worldcup_agent.tournament.simulator import TournamentSimulator
 
     return TournamentSimulator(rules, deterministic_predictor)
+
+
+@pytest.fixture
+def fake_provider():
+    class FakeProvider:
+        def __init__(self) -> None:
+            self.responses: list = []
+
+        def queue(self, value) -> None:
+            self.responses.append(value)
+
+        async def complete_structured(self, request, response_model):
+            from worldcup_agent.llm.contracts import LLMUsage, StructuredResponse
+
+            value = self.responses.pop(0)
+            if isinstance(value, Exception):
+                raise value
+            return StructuredResponse(value=value, provider="fake", model="fake-model", usage=LLMUsage())
+
+    fake = FakeProvider()
+    from worldcup_agent.agent.planner import TaskSpec
+
+    fake.queue(TaskSpec(intent="predict_tournament", mode="portfolio_frozen"))
+    return fake
+
+
+@pytest.fixture
+async def runtime_store(tmp_path):
+    from worldcup_agent.storage.sqlite import SQLiteRunStore
+
+    store = SQLiteRunStore(tmp_path / "runtime.sqlite3")
+    await store.initialize()
+    return store
+
+
+@pytest.fixture
+def production_registry():
+    from worldcup_agent.tools.production import ProductionServices, build_production_registry
+
+    return build_production_registry(ProductionServices.fixture())
+
+
+@pytest.fixture
+def fallback_planner():
+    from worldcup_agent.agent.planner import AgentPlanner
+
+    return AgentPlanner(provider=None)
