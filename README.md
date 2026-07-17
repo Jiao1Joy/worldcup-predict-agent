@@ -16,7 +16,7 @@ uvicorn worldcup_agent.api.app:app --reload --port 8000
 cd frontend
 npm install
 npm run dev
-# 打开 http://localhost:5173
+# 首页：http://localhost:5173
 # 可视化探索页：http://localhost:5173/explore
 ```
 
@@ -28,21 +28,24 @@ npm run dev
 - **LLM 集成**：OpenAI-compatible provider adapter；无 key 时确定性 fallback；证据约束发布；不展示思考链。
 - **产品 UI**：冠军总览、赛事树、单场比分热力图、球队阶段概率、2022 回测、Agent Workbench，以及由 `TournamentForecast` 实时派生的 48 队分组、Annexe C 与淘汰赛可视化；移动端适配与可访问图表。
 
-## 测试与重建
+## 验证命令
 
 ```powershell
-# 后端测试 + 静态检查
+# 后端
 cd backend
 python -m pytest -q
 python -m ruff check src tests
 
-# 前端测试 + 构建 + E2E
+# 前端
 cd frontend
 npm test
 npm run build
 npm run e2e
+```
 
-# 从公开数据重建 baseline artifacts
+从公开数据重建 baseline artifacts（可选，不需要完整 GBDT 训练）：
+
+```powershell
 worldcup-rebuild --source ../international_results-master/results.csv `
   --output ../artifacts/generated `
   --forecast-cutoff 2026-06-10T23:59:59Z `
@@ -59,7 +62,7 @@ worldcup-rebuild --source ../international_results-master/results.csv `
 | 前端 Agent Workbench | 已完成 | React + xyflow Run Graph、Step Inspector、Replay、故障注入、移动端适配 |
 | 前端预测产品 UI | 已完成 | Overview、赛程树、单场/球队详情、2022 回测、Visual Explorer、Agent Workbench 联动 |
 | LLM Agent 集成 | 已完成 | OpenAI-compatible adapter、确定性 fallback、证据约束发布 |
-| 离线 Portfolio 包 | 已完成 | artifacts/demo 含 forecast、completed-run、evidence、backtest |
+| 离线 Portfolio 包 | 已完成 | `artifacts/demo` 含 forecast、completed-run、evidence、backtest |
 | 自动化测试与验收 | 已完成 | 后端 86 项、前端 25 项、生产构建及 4 条浏览器流程均通过 |
 | 完整训练、公开部署、Docker 验证 | 不在范围内 | 按项目所有者决定，不作为本地 Portfolio 的完成条件 |
 
@@ -80,36 +83,17 @@ flowchart LR
 
 ## 实施与验收
 
-七阶段实施计划已经完成。实际执行结果记录在 [`docs/ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md)，历史交接说明保留在 [`docs/ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md)。最终范围是可复现、可离线演示的本地 Portfolio；完整 GBDT 训练、公开部署与 Docker 运行验证明确不属于交付条件。
-
-### 本地启动 Agent Runtime（已实现）
-
-```powershell
-cd backend
-python -m pip install -e ".[dev]"
-uvicorn worldcup_agent.api.app:app --reload --port 8000
-```
+七阶段实施计划已经完成。实际执行结果记录在 [`docs/ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md)，最终范围是可复现、可离线演示的本地 Portfolio；完整 GBDT 训练、公开部署与 Docker 运行验证明确不属于交付条件。
 
 ## 文档导航
 
-### 产品规范与交接
-
-- [`ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md)：执行入口、实施顺序、权限边界和停止条件
-- [`完整产品交接设计`](docs/superpowers/specs/2026-07-16-complete-product-handoff-design.md)：产品单一事实源
-- [`TECHNICAL_REPORT_MAPPING.md`](docs/TECHNICAL_REPORT_MAPPING.md)：原技术报告内容的保留、修订与替代关系
-- [`原技术报告（历史归档）`](docs/archive/TECHNICAL_REPORT_ORIGINAL.md)：保留早期完整方案与设计演进，不作为当前实施依据
-- [`历史技术报告归档说明`](docs/archive/README.md)：归档定位和文档优先级
-- [`Agent Workbench 设计`](docs/superpowers/specs/2026-07-15-agent-workbench-design.md)：Agent 展示层与交互设计
-
-### 七份实施计划
-
-1. [`Agent Runtime Foundation`](docs/superpowers/plans/2026-07-15-agent-runtime-foundation.md)
-2. [`Agent Workbench UI`](docs/superpowers/plans/2026-07-15-agent-workbench-ui.md)
-3. [`Prediction Engine`](docs/superpowers/plans/2026-07-16-prediction-engine.md)
-4. [`FIFA 2026 Tournament Simulator`](docs/superpowers/plans/2026-07-16-tournament-simulator.md)
-5. [`Real LLM Agent Integration`](docs/superpowers/plans/2026-07-16-llm-agent-integration.md)
-6. [`Prediction Product UI`](docs/superpowers/plans/2026-07-16-prediction-product-ui.md)
-7. [`System Integration and Acceptance`](docs/superpowers/plans/2026-07-16-system-integration-acceptance.md)
+- [`ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md)：实际验收结果与最终交付范围
+- [`DATA_SOURCES.md`](docs/DATA_SOURCES.md)：数据来源、版本与许可说明
+- [`ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md)：历史实施交接入口
+- [`EXECUTION_PLAN.md`](docs/EXECUTION_PLAN.md)：远程仓库原始执行计划（历史设计文档）
+- [`TECHNICAL_REPORT.md`](docs/TECHNICAL_REPORT.md)：远程仓库原始技术报告（历史设计文档）
+- [`完整产品交接设计`](docs/superpowers/specs/2026-07-16-complete-product-handoff-design.md)：当前产品设计单一事实源
+- [`TECHNICAL_REPORT_MAPPING.md`](docs/TECHNICAL_REPORT_MAPPING.md)：技术报告内容的保留、修订与替代关系
 
 ## 验收底线
 
@@ -117,4 +101,4 @@ uvicorn worldcup_agent.api.app:app --reload --port 8000
 - Demo fixture 不能冒充真实模型评估或最终产品预测；
 - 每个预测都要能够追溯数据版本、模型版本、赛制规则和证据；
 - Replay 不得产生外部调用，失败恢复与人工审批必须可以现场演示；
-- 文档中的命令和预期输出只有在实际执行通过后，才能记为验收结果。
+- 文档中的命令和结果只有在实际执行通过后，才能记为验收结果。

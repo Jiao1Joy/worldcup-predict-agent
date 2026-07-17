@@ -1,39 +1,77 @@
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+config.local.yaml
+secrets.json
+
 # Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 .eggs/
+.venv/
+venv/
 build/
 dist/
 .pytest_cache/
 .ruff_cache/
-*.tsbuildinfo
 .coverage
+.coverage.*
 htmlcov/
+coverage.xml
+.hypothesis/
 *.sqlite3
 *.db
+*.tsbuildinfo
 
-# Node / Frontend
+# Node / frontend
 node_modules/
 frontend/dist/
+frontend/build/
 frontend/.vite/
 .playwright/
 test-results/
 playwright-report/
+.npm/
+.pnpm-store/
 *.log
 
-# Environment & secrets
-.env
-.env.local
-*.key
-
-# Generated large artifacts (not demo bundle)
+# Generated data and model artifacts
 artifacts/generated/
 artifacts/full/
 raw_downloads/
+data/raw/
+data/snapshots/*.csv
+data/results/*.json
+!data/results/.gitkeep
+*.parquet
+*.feather
+*.h5
+*.pkl
+*.joblib
+*.model
+*.lgb
+*.xgb
+*.cbm
 
-# IDE
+# IDE, OS and temporary files
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 .DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.orig
+*.rej
+.cache/
+tmp/
+temp/
+.zcode/
+.claude/
+.agents/
