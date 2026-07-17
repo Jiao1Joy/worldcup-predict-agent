@@ -13,10 +13,7 @@ globalThis.ResizeObserver = TestResizeObserver as unknown as typeof ResizeObserv
 // with an aria-label so accessibility-oriented assertions still work.
 vi.mock('echarts-for-react', () => ({
   default: function MockECharts() {
-    const el = document.createElement('div');
-    el.setAttribute('aria-label', 'chart');
-    el.setAttribute('data-testid', 'echarts');
-    return el;
+    return null;
   },
 }));
 

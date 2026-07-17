@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      WORLDCUP_MODE: portfolio
+      WORLDCUP_ARTIFACTS_DIR: /app/artifacts/demo
+      WORLDCUP_RULES_DIR: /app/rules/fifa_2026
+      WORLDCUP_LLM_ENABLED: "false"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports: ["4173:8080"]
+    depends_on:
+      backend:
+        condition: service_healthy

@@ -1,0 +1,18 @@
+[
+  {
+    "evidence_id": "FORECAST-fc-20260611-300",
+    "kind": "forecast",
+    "value": {},
+    "source": "tournament-service",
+    "version": "20260611",
+    "created_at": "2026-07-16T00:00:00Z"
+  },
+  {
+    "evidence_id": "SIM-fc-20260611-300",
+    "kind": "forecast",
+    "value": {},
+    "source": "tournament-service",
+    "version": "20260611",
+    "created_at": "2026-07-16T00:00:00Z"
+  }
+]

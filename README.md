@@ -1,28 +1,72 @@
 # World Cup Prediction Agent
 
-一个面向 AI Agent 应用开发与求职展示的世界杯冠军预测项目：用可复现的概率模型推演完整赛程，再由 Agent 组织工具调用、证据校验与可解释结果输出。
+一个面向 AI Agent 应用开发与求职展示的世界杯冠军预测项目：用可复现的概率模型推演完整 48 队赛程，再由 Agent 组织工具调用、证据校验与可解释结果输出。
 
-> [!IMPORTANT]
-> 当前仓库是**完整产品设计与 Coding Agent 实施交接包**，不是已经可以运行的应用。源码、数据产物、测试、容器和验收报告仍需按计划实现。
+> 冠军预测是概率分布，不是确定性结论。所有 Elo、比分、概率、排名和回测指标由确定性 Python 生成；LLM 只负责解析、路由与解释。
 
-## 项目目标
+## 快速开始（Portfolio 离线模式，无需网络或密钥）
 
-- 获取历史战绩、球队排名、球员与分组赛程等数据，并冻结可追溯的数据快照；
-- 结合 Elo、进球分布模型、概率校准和 Monte Carlo 模拟，预测逐场比分与晋级概率；
-- 完整推演 48 队世界杯的小组赛、最佳第三名、淘汰赛和最终冠军；
-- 通过 Agent Workbench 展示计划、工具调用、证据、状态变化、失败恢复与人工审批；
-- 通过冠军页、赛程树、比分热力图和回测页面呈现预测依据，而不是只给一个答案。
+```powershell
+# 后端
+cd backend
+python -m pip install -e ".[dev]"
+uvicorn worldcup_agent.api.app:app --reload --port 8000
+
+# 前端（另开终端）
+cd frontend
+npm install
+npm run dev
+# 打开 http://localhost:5173
+```
+
+或一条命令启动容器化演示：
+
+```powershell
+docker compose up -d --build
+# 打开 http://127.0.0.1:4173
+```
+
+## 功能
+
+- **预测引擎**：加权 Elo、独立 Poisson / Bivariate Poisson / Dixon-Coles、Logistic 校准、融合、IPF 比分矩阵归一、可复现 2022 回测。
+- **赛事模拟**：48 队、12 组、72 场小组赛 + 32 场淘汰赛 = 104 场；495 行 Annexe C 最佳第三名映射；递归 head-to-head tie-break；蒙特卡洛与收敛记录。
+- **Agent 运行时**：单 Orchestrator + Tool Registry + Evidence Store + Critic；检查点恢复、人工审批、Replay、故障注入；LangGraph 编排；FastAPI/SSE。
+- **LLM 集成**：OpenAI-compatible provider adapter；无 key 时确定性 fallback；证据约束发布；不展示思考链。
+- **产品 UI**：冠军总览、赛事树、单场比分热力图、球队阶段概率、2022 回测、Agent Workbench；移动端适配与可访问图表。
+
+## 测试与重建
+
+```powershell
+# 后端测试 + 静态检查
+cd backend
+python -m pytest -q
+python -m ruff check src tests
+
+# 前端测试 + 构建 + E2E
+cd frontend
+npm test
+npm run build
+npm run e2e
+
+# 从公开数据重建 baseline artifacts
+worldcup-rebuild --source ../international_results-master/results.csv `
+  --output ../artifacts/generated `
+  --forecast-cutoff 2026-06-10T23:59:59Z `
+  --train-end 2022-11-19 --backtest-end 2022-12-18 `
+  --seed 20260611 --profile baseline
+```
 
 ## 当前完整度
 
 | 模块 | 状态 | 说明 |
 | --- | --- | --- |
-| 产品范围与架构 | 已完成 | 目标、边界、数据合同、API、UI 与验收标准已定义 |
-| Coding Agent 交接 | 已完成 | 7 份实施计划，合计 61 个 Task、366 个待执行步骤 |
 | 后端 Agent Runtime | 已完成 | LangGraph 编排、工具注册表、SQLite 持久化、检查点恢复、人工审批、FastAPI/SSE |
 | 预测引擎与赛事模拟 | 已完成 | Elo、三种进球模型、IPF 校准、2022 回测、495 Annexe C、104 场模拟、蒙特卡洛 |
 | 前端 Agent Workbench | 已完成 | React + xyflow Run Graph、Step Inspector、Replay、故障注入、移动端适配 |
 | 前端预测产品 UI | 已完成 | Overview、赛程树、单场/球队详情、2022 回测、Agent Workbench 联动 |
+| LLM Agent 集成 | 已完成 | OpenAI-compatible adapter、确定性 fallback、证据约束发布 |
+| 离线 Portfolio 包 | 已完成 | artifacts/demo 含 forecast、completed-run、evidence、backtest |
+| 容器化与 CI | 已完成 | Docker Compose、GitHub Actions、安全 redaction、验收报告 |
 | 测试、Docker、CI 与验收报告 | 待实现 | 必须由 Coding Agent 实际运行后生成，不能以计划中的预期结果代替 |
 
 ## 目标架构

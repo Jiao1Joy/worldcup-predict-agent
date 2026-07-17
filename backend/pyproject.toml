@@ -40,6 +40,7 @@ where = ["src"]
 [project.scripts]
 worldcup-rebuild = "worldcup_agent.cli.rebuild:main"
 worldcup-simulate = "worldcup_agent.cli.simulate:main"
+worldcup-generate-portfolio = "worldcup_agent.cli.generate_portfolio:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
