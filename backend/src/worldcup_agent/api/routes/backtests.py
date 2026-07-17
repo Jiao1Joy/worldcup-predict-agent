@@ -1,0 +1,30 @@
+from __future__ import annotations
+
+from fastapi import APIRouter, Request
+
+router = APIRouter(prefix="/api/backtests", tags=["backtests"])
+
+_FALLBACK = {
+    "rps": 0.2144,
+    "log_loss": 1.0107,
+    "brier": 0.6017,
+    "accuracy": 0.55,
+    "evaluation_matches": 100,
+    "model_version": "fixture-model-v1",
+    "data_version": "fixture-data-v1",
+    "calibration_bins": [
+        {"predicted": 0.1, "observed": 0.12, "count": 18},
+        {"predicted": 0.3, "observed": 0.28, "count": 22},
+        {"predicted": 0.5, "observed": 0.52, "count": 20},
+        {"predicted": 0.7, "observed": 0.68, "count": 24},
+        {"predicted": 0.9, "observed": 0.88, "count": 16},
+    ],
+}
+
+
+@router.get("/2022")
+async def backtest_2022(request: Request):
+    report = getattr(request.app.state, "backtest_2022", None)
+    if report is None:
+        return _FALLBACK
+    return report

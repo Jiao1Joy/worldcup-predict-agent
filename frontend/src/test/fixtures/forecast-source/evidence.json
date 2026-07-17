@@ -1,0 +1,10 @@
+[
+  {
+    "evidence_id": "FORECAST-fc-20260611-300",
+    "kind": "forecast"
+  },
+  {
+    "evidence_id": "SIM-fc-20260611-300",
+    "kind": "forecast"
+  }
+]

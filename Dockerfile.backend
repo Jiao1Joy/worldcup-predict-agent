@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY backend/pyproject.toml ./
+COPY backend/src ./src
+COPY backend/rules ./rules
+COPY backend/scripts ./scripts
+COPY artifacts/demo ./artifacts/demo
+
+RUN python -m pip install --no-cache-dir -e ".[dev]"
+
+RUN useradd --create-home app && chown -R app /app
+USER app
+
+ENV WORLDCUP_MODE=portfolio
+ENV WORLDCUP_ARTIFACTS_DIR=/app/artifacts/demo
+ENV WORLDCUP_RULES_DIR=/app/rules/fifa_2026
+ENV WORLDCUP_LLM_ENABLED=false
+
+EXPOSE 8000
+CMD ["uvicorn", "worldcup_agent.api.app:app", "--host", "0.0.0.0", "--port", "8000"]

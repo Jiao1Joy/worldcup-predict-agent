@@ -1,0 +1,10 @@
+**/__pycache__
+**/node_modules
+**/.pytest_cache
+**/.ruff_cache
+**/dist
+**/.vite
+**/test-results
+**/playwright-report
+.git
+*.sqlite3

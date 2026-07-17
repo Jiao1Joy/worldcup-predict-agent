@@ -1,0 +1,1441 @@
+{
+  "forecast_id": "fc-20260611-300",
+  "matches": [
+    {
+      "match_id": "M001",
+      "stage": "group",
+      "home_source": "GA1",
+      "away_source": "GA2",
+      "home_team": "Mexico",
+      "away_team": "South Africa",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M002",
+      "stage": "group",
+      "home_source": "GA3",
+      "away_source": "GA4",
+      "home_team": "South Korea",
+      "away_team": "Czech Republic",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M003",
+      "stage": "group",
+      "home_source": "GA1",
+      "away_source": "GA3",
+      "home_team": "Mexico",
+      "away_team": "South Korea",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M004",
+      "stage": "group",
+      "home_source": "GA4",
+      "away_source": "GA2",
+      "home_team": "Czech Republic",
+      "away_team": "South Africa",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M005",
+      "stage": "group",
+      "home_source": "GA1",
+      "away_source": "GA4",
+      "home_team": "Mexico",
+      "away_team": "Czech Republic",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M006",
+      "stage": "group",
+      "home_source": "GA2",
+      "away_source": "GA3",
+      "home_team": "South Africa",
+      "away_team": "South Korea",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M007",
+      "stage": "group",
+      "home_source": "GB1",
+      "away_source": "GB2",
+      "home_team": "Canada",
+      "away_team": "Bosnia and Herzegovina",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M008",
+      "stage": "group",
+      "home_source": "GB3",
+      "away_source": "GB4",
+      "home_team": "Qatar",
+      "away_team": "Switzerland",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M009",
+      "stage": "group",
+      "home_source": "GB1",
+      "away_source": "GB3",
+      "home_team": "Canada",
+      "away_team": "Qatar",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M010",
+      "stage": "group",
+      "home_source": "GB4",
+      "away_source": "GB2",
+      "home_team": "Switzerland",
+      "away_team": "Bosnia and Herzegovina",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M011",
+      "stage": "group",
+      "home_source": "GB1",
+      "away_source": "GB4",
+      "home_team": "Canada",
+      "away_team": "Switzerland",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M012",
+      "stage": "group",
+      "home_source": "GB2",
+      "away_source": "GB3",
+      "home_team": "Bosnia and Herzegovina",
+      "away_team": "Qatar",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M013",
+      "stage": "group",
+      "home_source": "GC1",
+      "away_source": "GC2",
+      "home_team": "Brazil",
+      "away_team": "Morocco",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M014",
+      "stage": "group",
+      "home_source": "GC3",
+      "away_source": "GC4",
+      "home_team": "Haiti",
+      "away_team": "Scotland",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M015",
+      "stage": "group",
+      "home_source": "GC1",
+      "away_source": "GC3",
+      "home_team": "Brazil",
+      "away_team": "Haiti",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M016",
+      "stage": "group",
+      "home_source": "GC4",
+      "away_source": "GC2",
+      "home_team": "Scotland",
+      "away_team": "Morocco",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M017",
+      "stage": "group",
+      "home_source": "GC1",
+      "away_source": "GC4",
+      "home_team": "Brazil",
+      "away_team": "Scotland",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M018",
+      "stage": "group",
+      "home_source": "GC2",
+      "away_source": "GC3",
+      "home_team": "Morocco",
+      "away_team": "Haiti",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M019",
+      "stage": "group",
+      "home_source": "GD1",
+      "away_source": "GD2",
+      "home_team": "United States",
+      "away_team": "Paraguay",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M020",
+      "stage": "group",
+      "home_source": "GD3",
+      "away_source": "GD4",
+      "home_team": "Australia",
+      "away_team": "Turkey",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M021",
+      "stage": "group",
+      "home_source": "GD1",
+      "away_source": "GD3",
+      "home_team": "United States",
+      "away_team": "Australia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M022",
+      "stage": "group",
+      "home_source": "GD4",
+      "away_source": "GD2",
+      "home_team": "Turkey",
+      "away_team": "Paraguay",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M023",
+      "stage": "group",
+      "home_source": "GD1",
+      "away_source": "GD4",
+      "home_team": "United States",
+      "away_team": "Turkey",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M024",
+      "stage": "group",
+      "home_source": "GD2",
+      "away_source": "GD3",
+      "home_team": "Paraguay",
+      "away_team": "Australia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M025",
+      "stage": "group",
+      "home_source": "GE1",
+      "away_source": "GE2",
+      "home_team": "Germany",
+      "away_team": "Curaçao",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M026",
+      "stage": "group",
+      "home_source": "GE3",
+      "away_source": "GE4",
+      "home_team": "Ivory Coast",
+      "away_team": "Ecuador",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M027",
+      "stage": "group",
+      "home_source": "GE1",
+      "away_source": "GE3",
+      "home_team": "Germany",
+      "away_team": "Ivory Coast",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M028",
+      "stage": "group",
+      "home_source": "GE4",
+      "away_source": "GE2",
+      "home_team": "Ecuador",
+      "away_team": "Curaçao",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M029",
+      "stage": "group",
+      "home_source": "GE1",
+      "away_source": "GE4",
+      "home_team": "Germany",
+      "away_team": "Ecuador",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M030",
+      "stage": "group",
+      "home_source": "GE2",
+      "away_source": "GE3",
+      "home_team": "Curaçao",
+      "away_team": "Ivory Coast",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M031",
+      "stage": "group",
+      "home_source": "GF1",
+      "away_source": "GF2",
+      "home_team": "Netherlands",
+      "away_team": "Japan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M032",
+      "stage": "group",
+      "home_source": "GF3",
+      "away_source": "GF4",
+      "home_team": "Sweden",
+      "away_team": "Tunisia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M033",
+      "stage": "group",
+      "home_source": "GF1",
+      "away_source": "GF3",
+      "home_team": "Netherlands",
+      "away_team": "Sweden",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M034",
+      "stage": "group",
+      "home_source": "GF4",
+      "away_source": "GF2",
+      "home_team": "Tunisia",
+      "away_team": "Japan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M035",
+      "stage": "group",
+      "home_source": "GF1",
+      "away_source": "GF4",
+      "home_team": "Netherlands",
+      "away_team": "Tunisia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M036",
+      "stage": "group",
+      "home_source": "GF2",
+      "away_source": "GF3",
+      "home_team": "Japan",
+      "away_team": "Sweden",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M037",
+      "stage": "group",
+      "home_source": "GG1",
+      "away_source": "GG2",
+      "home_team": "Belgium",
+      "away_team": "Egypt",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M038",
+      "stage": "group",
+      "home_source": "GG3",
+      "away_source": "GG4",
+      "home_team": "Iran",
+      "away_team": "New Zealand",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M039",
+      "stage": "group",
+      "home_source": "GG1",
+      "away_source": "GG3",
+      "home_team": "Belgium",
+      "away_team": "Iran",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M040",
+      "stage": "group",
+      "home_source": "GG4",
+      "away_source": "GG2",
+      "home_team": "New Zealand",
+      "away_team": "Egypt",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M041",
+      "stage": "group",
+      "home_source": "GG1",
+      "away_source": "GG4",
+      "home_team": "Belgium",
+      "away_team": "New Zealand",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M042",
+      "stage": "group",
+      "home_source": "GG2",
+      "away_source": "GG3",
+      "home_team": "Egypt",
+      "away_team": "Iran",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M043",
+      "stage": "group",
+      "home_source": "GH1",
+      "away_source": "GH2",
+      "home_team": "Spain",
+      "away_team": "Cape Verde",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M044",
+      "stage": "group",
+      "home_source": "GH3",
+      "away_source": "GH4",
+      "home_team": "Saudi Arabia",
+      "away_team": "Uruguay",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M045",
+      "stage": "group",
+      "home_source": "GH1",
+      "away_source": "GH3",
+      "home_team": "Spain",
+      "away_team": "Saudi Arabia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M046",
+      "stage": "group",
+      "home_source": "GH4",
+      "away_source": "GH2",
+      "home_team": "Uruguay",
+      "away_team": "Cape Verde",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M047",
+      "stage": "group",
+      "home_source": "GH1",
+      "away_source": "GH4",
+      "home_team": "Spain",
+      "away_team": "Uruguay",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M048",
+      "stage": "group",
+      "home_source": "GH2",
+      "away_source": "GH3",
+      "home_team": "Cape Verde",
+      "away_team": "Saudi Arabia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M049",
+      "stage": "group",
+      "home_source": "GI1",
+      "away_source": "GI2",
+      "home_team": "France",
+      "away_team": "Senegal",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M050",
+      "stage": "group",
+      "home_source": "GI3",
+      "away_source": "GI4",
+      "home_team": "Iraq",
+      "away_team": "Norway",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M051",
+      "stage": "group",
+      "home_source": "GI1",
+      "away_source": "GI3",
+      "home_team": "France",
+      "away_team": "Iraq",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M052",
+      "stage": "group",
+      "home_source": "GI4",
+      "away_source": "GI2",
+      "home_team": "Norway",
+      "away_team": "Senegal",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M053",
+      "stage": "group",
+      "home_source": "GI1",
+      "away_source": "GI4",
+      "home_team": "France",
+      "away_team": "Norway",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M054",
+      "stage": "group",
+      "home_source": "GI2",
+      "away_source": "GI3",
+      "home_team": "Senegal",
+      "away_team": "Iraq",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M055",
+      "stage": "group",
+      "home_source": "GJ1",
+      "away_source": "GJ2",
+      "home_team": "Argentina",
+      "away_team": "Algeria",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M056",
+      "stage": "group",
+      "home_source": "GJ3",
+      "away_source": "GJ4",
+      "home_team": "Austria",
+      "away_team": "Jordan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M057",
+      "stage": "group",
+      "home_source": "GJ1",
+      "away_source": "GJ3",
+      "home_team": "Argentina",
+      "away_team": "Austria",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M058",
+      "stage": "group",
+      "home_source": "GJ4",
+      "away_source": "GJ2",
+      "home_team": "Jordan",
+      "away_team": "Algeria",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M059",
+      "stage": "group",
+      "home_source": "GJ1",
+      "away_source": "GJ4",
+      "home_team": "Argentina",
+      "away_team": "Jordan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M060",
+      "stage": "group",
+      "home_source": "GJ2",
+      "away_source": "GJ3",
+      "home_team": "Algeria",
+      "away_team": "Austria",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M061",
+      "stage": "group",
+      "home_source": "GK1",
+      "away_source": "GK2",
+      "home_team": "Portugal",
+      "away_team": "DR Congo",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M062",
+      "stage": "group",
+      "home_source": "GK3",
+      "away_source": "GK4",
+      "home_team": "Uzbekistan",
+      "away_team": "Colombia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M063",
+      "stage": "group",
+      "home_source": "GK1",
+      "away_source": "GK3",
+      "home_team": "Portugal",
+      "away_team": "Uzbekistan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M064",
+      "stage": "group",
+      "home_source": "GK4",
+      "away_source": "GK2",
+      "home_team": "Colombia",
+      "away_team": "DR Congo",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M065",
+      "stage": "group",
+      "home_source": "GK1",
+      "away_source": "GK4",
+      "home_team": "Portugal",
+      "away_team": "Colombia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M066",
+      "stage": "group",
+      "home_source": "GK2",
+      "away_source": "GK3",
+      "home_team": "DR Congo",
+      "away_team": "Uzbekistan",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M067",
+      "stage": "group",
+      "home_source": "GL1",
+      "away_source": "GL2",
+      "home_team": "England",
+      "away_team": "Croatia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M068",
+      "stage": "group",
+      "home_source": "GL3",
+      "away_source": "GL4",
+      "home_team": "Ghana",
+      "away_team": "Panama",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M069",
+      "stage": "group",
+      "home_source": "GL1",
+      "away_source": "GL3",
+      "home_team": "England",
+      "away_team": "Ghana",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M070",
+      "stage": "group",
+      "home_source": "GL4",
+      "away_source": "GL2",
+      "home_team": "Panama",
+      "away_team": "Croatia",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M071",
+      "stage": "group",
+      "home_source": "GL1",
+      "away_source": "GL4",
+      "home_team": "England",
+      "away_team": "Panama",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M072",
+      "stage": "group",
+      "home_source": "GL2",
+      "away_source": "GL3",
+      "home_team": "Croatia",
+      "away_team": "Ghana",
+      "prediction": null,
+      "winner": null
+    },
+    {
+      "match_id": "M073",
+      "stage": "round_of_32",
+      "home_source": "1A",
+      "away_source": "3",
+      "home_team": "South Korea",
+      "away_team": "Ivory Coast",
+      "prediction": null,
+      "winner": "Ivory Coast"
+    },
+    {
+      "match_id": "M074",
+      "stage": "round_of_32",
+      "home_source": "1B",
+      "away_source": "3",
+      "home_team": "Switzerland",
+      "away_team": "Egypt",
+      "prediction": null,
+      "winner": "Switzerland"
+    },
+    {
+      "match_id": "M075",
+      "stage": "round_of_32",
+      "home_source": "1D",
+      "away_source": "3",
+      "home_team": "Turkey",
+      "away_team": "Iraq",
+      "prediction": null,
+      "winner": "Iraq"
+    },
+    {
+      "match_id": "M076",
+      "stage": "round_of_32",
+      "home_source": "1E",
+      "away_source": "3",
+      "home_team": "Curaçao",
+      "away_team": "Australia",
+      "prediction": null,
+      "winner": "Australia"
+    },
+    {
+      "match_id": "M077",
+      "stage": "round_of_32",
+      "home_source": "1C",
+      "away_source": "2A",
+      "home_team": "Haiti",
+      "away_team": "Czech Republic",
+      "prediction": null,
+      "winner": "Haiti"
+    },
+    {
+      "match_id": "M078",
+      "stage": "round_of_32",
+      "home_source": "1F",
+      "away_source": "2B",
+      "home_team": "Japan",
+      "away_team": "Canada",
+      "prediction": null,
+      "winner": "Japan"
+    },
+    {
+      "match_id": "M079",
+      "stage": "round_of_32",
+      "home_source": "1G",
+      "away_source": "2C",
+      "home_team": "Iran",
+      "away_team": "Morocco",
+      "prediction": null,
+      "winner": "Iran"
+    },
+    {
+      "match_id": "M080",
+      "stage": "round_of_32",
+      "home_source": "1H",
+      "away_source": "2D",
+      "home_team": "Uruguay",
+      "away_team": "United States",
+      "prediction": null,
+      "winner": "Uruguay"
+    },
+    {
+      "match_id": "M081",
+      "stage": "round_of_32",
+      "home_source": "1I",
+      "away_source": "2E",
+      "home_team": "France",
+      "away_team": "Ecuador",
+      "prediction": null,
+      "winner": "France"
+    },
+    {
+      "match_id": "M082",
+      "stage": "round_of_32",
+      "home_source": "1J",
+      "away_source": "2F",
+      "home_team": "Argentina",
+      "away_team": "Tunisia",
+      "prediction": null,
+      "winner": "Tunisia"
+    },
+    {
+      "match_id": "M083",
+      "stage": "round_of_32",
+      "home_source": "1K",
+      "away_source": "2G",
+      "home_team": "DR Congo",
+      "away_team": "New Zealand",
+      "prediction": null,
+      "winner": "DR Congo"
+    },
+    {
+      "match_id": "M084",
+      "stage": "round_of_32",
+      "home_source": "1L",
+      "away_source": "2H",
+      "home_team": "Panama",
+      "away_team": "Spain",
+      "prediction": null,
+      "winner": "Panama"
+    },
+    {
+      "match_id": "M085",
+      "stage": "round_of_32",
+      "home_source": "2I",
+      "away_source": "3",
+      "home_team": "Norway",
+      "away_team": "Austria",
+      "prediction": null,
+      "winner": "Norway"
+    },
+    {
+      "match_id": "M086",
+      "stage": "round_of_32",
+      "home_source": "2J",
+      "away_source": "3",
+      "home_team": "Jordan",
+      "away_team": "Netherlands",
+      "prediction": null,
+      "winner": "Netherlands"
+    },
+    {
+      "match_id": "M087",
+      "stage": "round_of_32",
+      "home_source": "2K",
+      "away_source": "3",
+      "home_team": "Uzbekistan",
+      "away_team": "Ghana",
+      "prediction": null,
+      "winner": "Uzbekistan"
+    },
+    {
+      "match_id": "M088",
+      "stage": "round_of_32",
+      "home_source": "2L",
+      "away_source": "3",
+      "home_team": "England",
+      "away_team": "Portugal",
+      "prediction": null,
+      "winner": "England"
+    },
+    {
+      "match_id": "M089",
+      "stage": "round_of_16",
+      "home_source": "W073",
+      "away_source": "W074",
+      "home_team": "Ivory Coast",
+      "away_team": "Switzerland",
+      "prediction": null,
+      "winner": "Ivory Coast"
+    },
+    {
+      "match_id": "M090",
+      "stage": "round_of_16",
+      "home_source": "W075",
+      "away_source": "W076",
+      "home_team": "Iraq",
+      "away_team": "Australia",
+      "prediction": null,
+      "winner": "Iraq"
+    },
+    {
+      "match_id": "M091",
+      "stage": "round_of_16",
+      "home_source": "W077",
+      "away_source": "W078",
+      "home_team": "Haiti",
+      "away_team": "Japan",
+      "prediction": null,
+      "winner": "Japan"
+    },
+    {
+      "match_id": "M092",
+      "stage": "round_of_16",
+      "home_source": "W079",
+      "away_source": "W080",
+      "home_team": "Iran",
+      "away_team": "Uruguay",
+      "prediction": null,
+      "winner": "Iran"
+    },
+    {
+      "match_id": "M093",
+      "stage": "round_of_16",
+      "home_source": "W081",
+      "away_source": "W082",
+      "home_team": "France",
+      "away_team": "Tunisia",
+      "prediction": null,
+      "winner": "France"
+    },
+    {
+      "match_id": "M094",
+      "stage": "round_of_16",
+      "home_source": "W083",
+      "away_source": "W084",
+      "home_team": "DR Congo",
+      "away_team": "Panama",
+      "prediction": null,
+      "winner": "Panama"
+    },
+    {
+      "match_id": "M095",
+      "stage": "round_of_16",
+      "home_source": "W085",
+      "away_source": "W086",
+      "home_team": "Norway",
+      "away_team": "Netherlands",
+      "prediction": null,
+      "winner": "Netherlands"
+    },
+    {
+      "match_id": "M096",
+      "stage": "round_of_16",
+      "home_source": "W087",
+      "away_source": "W088",
+      "home_team": "Uzbekistan",
+      "away_team": "England",
+      "prediction": null,
+      "winner": "England"
+    },
+    {
+      "match_id": "M097",
+      "stage": "quarter_final",
+      "home_source": "W089",
+      "away_source": "W090",
+      "home_team": "Ivory Coast",
+      "away_team": "Iraq",
+      "prediction": null,
+      "winner": "Ivory Coast"
+    },
+    {
+      "match_id": "M098",
+      "stage": "quarter_final",
+      "home_source": "W091",
+      "away_source": "W092",
+      "home_team": "Japan",
+      "away_team": "Iran",
+      "prediction": null,
+      "winner": "Iran"
+    },
+    {
+      "match_id": "M099",
+      "stage": "quarter_final",
+      "home_source": "W093",
+      "away_source": "W094",
+      "home_team": "France",
+      "away_team": "Panama",
+      "prediction": null,
+      "winner": "Panama"
+    },
+    {
+      "match_id": "M100",
+      "stage": "quarter_final",
+      "home_source": "W095",
+      "away_source": "W096",
+      "home_team": "Netherlands",
+      "away_team": "England",
+      "prediction": null,
+      "winner": "England"
+    },
+    {
+      "match_id": "M101",
+      "stage": "semi_final",
+      "home_source": "W097",
+      "away_source": "W098",
+      "home_team": "Ivory Coast",
+      "away_team": "Iran",
+      "prediction": null,
+      "winner": "Iran"
+    },
+    {
+      "match_id": "M102",
+      "stage": "semi_final",
+      "home_source": "W099",
+      "away_source": "W100",
+      "home_team": "Panama",
+      "away_team": "England",
+      "prediction": null,
+      "winner": "England"
+    },
+    {
+      "match_id": "M103",
+      "stage": "third_place",
+      "home_source": "L101",
+      "away_source": "L102",
+      "home_team": "Ivory Coast",
+      "away_team": "Panama",
+      "prediction": null,
+      "winner": "Panama"
+    },
+    {
+      "match_id": "M104",
+      "stage": "final",
+      "home_source": "W101",
+      "away_source": "W102",
+      "home_team": "Iran",
+      "away_team": "England",
+      "prediction": null,
+      "winner": "England"
+    }
+  ],
+  "team_probabilities": {
+    "Mexico": {
+      "r32": 0.18333333333333332,
+      "r16": 0.03,
+      "qf": 0.01,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "South Africa": {
+      "r32": 0.7533333333333333,
+      "r16": 0.23,
+      "qf": 0.1,
+      "sf": 0.03,
+      "final": 0.006666666666666667,
+      "champion": 0.0
+    },
+    "South Korea": {
+      "r32": 0.94,
+      "r16": 0.5333333333333333,
+      "qf": 0.2733333333333333,
+      "sf": 0.09333333333333334,
+      "final": 0.03,
+      "champion": 0.006666666666666667
+    },
+    "Czech Republic": {
+      "r32": 0.8533333333333334,
+      "r16": 0.34,
+      "qf": 0.11666666666666667,
+      "sf": 0.023333333333333334,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Canada": {
+      "r32": 0.9366666666666666,
+      "r16": 0.5566666666666666,
+      "qf": 0.2966666666666667,
+      "sf": 0.14,
+      "final": 0.03,
+      "champion": 0.006666666666666667
+    },
+    "Bosnia and Herzegovina": {
+      "r32": 0.5733333333333334,
+      "r16": 0.16666666666666666,
+      "qf": 0.03333333333333333,
+      "sf": 0.023333333333333334,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Qatar": {
+      "r32": 0.17333333333333334,
+      "r16": 0.02,
+      "qf": 0.0,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Switzerland": {
+      "r32": 0.9466666666666667,
+      "r16": 0.6133333333333333,
+      "qf": 0.36333333333333334,
+      "sf": 0.17333333333333334,
+      "final": 0.08,
+      "champion": 0.03
+    },
+    "Brazil": {
+      "r32": 0.42,
+      "r16": 0.06333333333333334,
+      "qf": 0.01,
+      "sf": 0.006666666666666667,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Morocco": {
+      "r32": 0.5733333333333334,
+      "r16": 0.11666666666666667,
+      "qf": 0.03,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Haiti": {
+      "r32": 0.99,
+      "r16": 0.7866666666666666,
+      "qf": 0.5133333333333333,
+      "sf": 0.33,
+      "final": 0.26,
+      "champion": 0.13333333333333333
+    },
+    "Scotland": {
+      "r32": 0.6333333333333333,
+      "r16": 0.15333333333333332,
+      "qf": 0.05,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "United States": {
+      "r32": 0.99,
+      "r16": 0.7733333333333333,
+      "qf": 0.45,
+      "sf": 0.24666666666666667,
+      "final": 0.10666666666666667,
+      "champion": 0.03333333333333333
+    },
+    "Paraguay": {
+      "r32": 0.4,
+      "r16": 0.14333333333333334,
+      "qf": 0.04,
+      "sf": 0.016666666666666666,
+      "final": 0.0033333333333333335,
+      "champion": 0.0
+    },
+    "Australia": {
+      "r32": 0.5133333333333333,
+      "r16": 0.2,
+      "qf": 0.043333333333333335,
+      "sf": 0.006666666666666667,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Turkey": {
+      "r32": 0.7466666666666667,
+      "r16": 0.35,
+      "qf": 0.13333333333333333,
+      "sf": 0.023333333333333334,
+      "final": 0.006666666666666667,
+      "champion": 0.0033333333333333335
+    },
+    "Germany": {
+      "r32": 0.5833333333333334,
+      "r16": 0.13,
+      "qf": 0.03,
+      "sf": 0.01,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Curaçao": {
+      "r32": 0.7666666666666667,
+      "r16": 0.23333333333333334,
+      "qf": 0.07333333333333333,
+      "sf": 0.023333333333333334,
+      "final": 0.0033333333333333335,
+      "champion": 0.0
+    },
+    "Ivory Coast": {
+      "r32": 0.99,
+      "r16": 0.7366666666666667,
+      "qf": 0.43333333333333335,
+      "sf": 0.3,
+      "final": 0.11,
+      "champion": 0.03666666666666667
+    },
+    "Ecuador": {
+      "r32": 0.35,
+      "r16": 0.056666666666666664,
+      "qf": 0.01,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Netherlands": {
+      "r32": 0.7866666666666666,
+      "r16": 0.31,
+      "qf": 0.06333333333333334,
+      "sf": 0.006666666666666667,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Japan": {
+      "r32": 0.99,
+      "r16": 0.6666666666666666,
+      "qf": 0.39666666666666667,
+      "sf": 0.23666666666666666,
+      "final": 0.16333333333333333,
+      "champion": 0.06333333333333334
+    },
+    "Sweden": {
+      "r32": 0.2633333333333333,
+      "r16": 0.043333333333333335,
+      "qf": 0.0033333333333333335,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Tunisia": {
+      "r32": 0.6233333333333333,
+      "r16": 0.21,
+      "qf": 0.03666666666666667,
+      "sf": 0.013333333333333334,
+      "final": 0.006666666666666667,
+      "champion": 0.0
+    },
+    "Belgium": {
+      "r32": 0.35333333333333333,
+      "r16": 0.043333333333333335,
+      "qf": 0.013333333333333334,
+      "sf": 0.0033333333333333335,
+      "final": 0.0033333333333333335,
+      "champion": 0.0
+    },
+    "Egypt": {
+      "r32": 0.51,
+      "r16": 0.13666666666666666,
+      "qf": 0.023333333333333334,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Iran": {
+      "r32": 0.9833333333333333,
+      "r16": 0.7833333333333333,
+      "qf": 0.6166666666666667,
+      "sf": 0.35,
+      "final": 0.22333333333333333,
+      "champion": 0.10333333333333333
+    },
+    "New Zealand": {
+      "r32": 0.7466666666666667,
+      "r16": 0.18333333333333332,
+      "qf": 0.056666666666666664,
+      "sf": 0.006666666666666667,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Spain": {
+      "r32": 0.5433333333333333,
+      "r16": 0.11333333333333333,
+      "qf": 0.016666666666666666,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Cape Verde": {
+      "r32": 0.55,
+      "r16": 0.10333333333333333,
+      "qf": 0.02,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Saudi Arabia": {
+      "r32": 0.57,
+      "r16": 0.10333333333333333,
+      "qf": 0.02666666666666667,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Uruguay": {
+      "r32": 0.99,
+      "r16": 0.47333333333333333,
+      "qf": 0.12666666666666668,
+      "sf": 0.023333333333333334,
+      "final": 0.01,
+      "champion": 0.0
+    },
+    "France": {
+      "r32": 0.96,
+      "r16": 0.77,
+      "qf": 0.5433333333333333,
+      "sf": 0.27666666666666667,
+      "final": 0.13333333333333333,
+      "champion": 0.09666666666666666
+    },
+    "Senegal": {
+      "r32": 0.09333333333333334,
+      "r16": 0.02,
+      "qf": 0.0033333333333333335,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Iraq": {
+      "r32": 0.9633333333333334,
+      "r16": 0.79,
+      "qf": 0.5533333333333333,
+      "sf": 0.3433333333333333,
+      "final": 0.23333333333333334,
+      "champion": 0.16333333333333333
+    },
+    "Norway": {
+      "r32": 0.58,
+      "r16": 0.19666666666666666,
+      "qf": 0.07333333333333333,
+      "sf": 0.0033333333333333335,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Argentina": {
+      "r32": 0.6033333333333334,
+      "r16": 0.21,
+      "qf": 0.05,
+      "sf": 0.01,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Algeria": {
+      "r32": 0.9933333333333333,
+      "r16": 0.8133333333333334,
+      "qf": 0.47,
+      "sf": 0.2833333333333333,
+      "final": 0.14333333333333334,
+      "champion": 0.09666666666666666
+    },
+    "Austria": {
+      "r32": 0.7533333333333333,
+      "r16": 0.2733333333333333,
+      "qf": 0.06333333333333334,
+      "sf": 0.013333333333333334,
+      "final": 0.0033333333333333335,
+      "champion": 0.0
+    },
+    "Jordan": {
+      "r32": 0.30666666666666664,
+      "r16": 0.06666666666666667,
+      "qf": 0.013333333333333334,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Portugal": {
+      "r32": 0.7566666666666667,
+      "r16": 0.21666666666666667,
+      "qf": 0.06,
+      "sf": 0.01,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "DR Congo": {
+      "r32": 0.97,
+      "r16": 0.72,
+      "qf": 0.36666666666666664,
+      "sf": 0.14666666666666667,
+      "final": 0.07333333333333333,
+      "champion": 0.03666666666666667
+    },
+    "Uzbekistan": {
+      "r32": 0.8233333333333334,
+      "r16": 0.32,
+      "qf": 0.10333333333333333,
+      "sf": 0.03666666666666667,
+      "final": 0.0033333333333333335,
+      "champion": 0.0033333333333333335
+    },
+    "Colombia": {
+      "r32": 0.15666666666666668,
+      "r16": 0.02,
+      "qf": 0.0,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "England": {
+      "r32": 0.9533333333333334,
+      "r16": 0.7933333333333333,
+      "qf": 0.55,
+      "sf": 0.34,
+      "final": 0.16,
+      "champion": 0.09333333333333334
+    },
+    "Croatia": {
+      "r32": 0.1,
+      "r16": 0.02666666666666667,
+      "qf": 0.0,
+      "sf": 0.0,
+      "final": 0.0,
+      "champion": 0.0
+    },
+    "Ghana": {
+      "r32": 0.8366666666666667,
+      "r16": 0.6066666666666667,
+      "qf": 0.2633333333333333,
+      "sf": 0.14,
+      "final": 0.07,
+      "champion": 0.023333333333333334
+    },
+    "Panama": {
+      "r32": 0.9233333333333333,
+      "r16": 0.7533333333333333,
+      "qf": 0.4766666666666667,
+      "sf": 0.2866666666666667,
+      "final": 0.13666666666666666,
+      "champion": 0.07
+    }
+  },
+  "simulation_runs": 300,
+  "seed": 20260611,
+  "versions": {
+    "rules_version": "fifa-2026-v1",
+    "seed": "20260611"
+  },
+  "evidence_ids": [
+    "FORECAST-fc-20260611-300",
+    "SIM-fc-20260611-300"
+  ]
+}
