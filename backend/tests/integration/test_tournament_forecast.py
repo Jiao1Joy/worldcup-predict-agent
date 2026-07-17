@@ -17,3 +17,10 @@ def test_forecast_requires_104_matches(simulator) -> None:
     service = TournamentForecastService(simulator, batch_size=100)
     forecast = service.forecast(runs=200, seed=7)
     assert len(forecast.matches) == 104
+    assert all(match.prediction is not None for match in forecast.matches)
+    modal_champion = max(
+        forecast.team_probabilities,
+        key=lambda team: forecast.team_probabilities[team].champion,
+    )
+    final = next(match for match in forecast.matches if match.match_id == "M104")
+    assert final.winner == modal_champion

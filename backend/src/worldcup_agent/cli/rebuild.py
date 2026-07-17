@@ -13,7 +13,7 @@ import pandas as pd
 from worldcup_agent.artifacts.repository import ArtifactRepository
 from worldcup_agent.backtest.evaluator import BacktestWindow, evaluate_predictions, split_backtest
 from worldcup_agent.data.snapshot import build_snapshot
-from worldcup_agent.prediction.calibration import train_baseline_calibrator
+from worldcup_agent.prediction.calibration import calibration_features, train_baseline_calibrator
 from worldcup_agent.prediction.elo import EloEngine, MatchForElo
 from worldcup_agent.prediction.goal_models import fit_bivariate_poisson, fit_dixon_coles, fit_poisson
 
@@ -92,20 +92,6 @@ def main() -> int:
 
     goal_models = _fit_goal_models(train_split)
 
-    # Build calibration features on the evaluation window using Dixon-Coles.
-    elo = EloEngine()
-    for _, match in train_split.iterrows():
-        elo.process(
-            MatchForElo(
-                home_team=match["home_team"],
-                away_team=match["away_team"],
-                home_score=int(match["home_score"]),
-                away_score=int(match["away_score"]),
-                tournament=str(match["tournament"]),
-                neutral=bool(match["neutral"]),
-            )
-        )
-
     metrics, per_match = evaluate_predictions(
         train_split,
         eval_split,
@@ -116,17 +102,35 @@ def main() -> int:
     # Train baseline calibrator on training partition outcomes.
     features = []
     labels = []
+    calibration_elo = EloEngine()
+    goal_parameters = goal_models["dixon_coles"]
     for _, match in train_split.iterrows():
-        home_rating = elo.rating(match["home_team"])
-        away_rating = elo.rating(match["away_team"])
-        expected = EloEngine.expected_home_score_from_ratings(home_rating, away_rating, bool(match["neutral"]))
-        features.append([expected, 1 - expected])
+        home_rating = calibration_elo.rating(match["home_team"])
+        away_rating = calibration_elo.rating(match["away_team"])
+        features.append(
+            calibration_features(
+                home_rating,
+                away_rating,
+                bool(match["neutral"]),
+                goal_parameters,
+            )
+        )
         if match["home_score"] > match["away_score"]:
             labels.append(0)
         elif match["home_score"] < match["away_score"]:
             labels.append(2)
         else:
             labels.append(1)
+        calibration_elo.process(
+            MatchForElo(
+                home_team=match["home_team"],
+                away_team=match["away_team"],
+                home_score=int(match["home_score"]),
+                away_score=int(match["away_score"]),
+                tournament=str(match["tournament"]),
+                neutral=bool(match["neutral"]),
+            )
+        )
     calibrator = train_baseline_calibrator(np.array(features), np.array(labels))
 
     repository = ArtifactRepository(args.output / "artifacts")
@@ -134,6 +138,7 @@ def main() -> int:
         model=calibrator,
         data_version=manifest.data_version,
         selected_goal_model=goal_models["dixon_coles"].model_name,
+        goal_parameters=goal_models["dixon_coles"].model_dump(),
         fusion_weights={"elo": 0.2, "goal": 0.5, "ml": 0.3},
         metrics={
             "rps": metrics["rps"],

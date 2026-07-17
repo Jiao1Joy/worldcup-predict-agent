@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "e2e": "playwright test"
+    "e2e": "node scripts/run-e2e.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.4.4",

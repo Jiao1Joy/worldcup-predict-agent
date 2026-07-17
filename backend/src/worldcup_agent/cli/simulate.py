@@ -12,36 +12,14 @@ from worldcup_agent.tournament.simulator import TournamentSimulator
 
 
 def _build_predictor(rules):
-    from math import factorial
+    from worldcup_agent.prediction.service import PredictionService, RuntimeModels
+    from worldcup_agent.tools.production import RankingPredictor
 
-    import numpy as np
-
-    from worldcup_agent.prediction.contracts import MatchPrediction
-
-    class FixturePredictor:
-        def predict(self, match_id: str, home_team: str, away_team: str, **context):
-            home_strength = (sum(ord(c) for c in home_team) % 100) / 100.0
-            away_strength = (sum(ord(c) for c in away_team) % 100) / 100.0
-            home_lambda = max(0.3, 0.8 + (home_strength - away_strength) * 1.5)
-            away_lambda = max(0.3, 0.8 - (home_strength - away_strength) * 1.5)
-            goals = np.arange(9)
-            home_pois = np.exp(-home_lambda) * home_lambda**goals / np.array([factorial(g) for g in goals])
-            away_pois = np.exp(-away_lambda) * away_lambda**goals / np.array([factorial(g) for g in goals])
-            matrix = np.outer(home_pois, away_pois)
-            matrix = matrix / matrix.sum()
-            return MatchPrediction.from_score_matrix(
-                match_id=match_id,
-                home_team=home_team,
-                away_team=away_team,
-                expected_home_goals=float(home_lambda),
-                expected_away_goals=float(away_lambda),
-                score_matrix=matrix.tolist(),
-                data_version="fixture-data-v1",
-                model_version="fixture-model-v1",
-                evidence_ids=[f"MATCH-{match_id}-PRED"],
-            )
-
-    return FixturePredictor()
+    models = RuntimeModels.baseline_fixture(
+        data_version="fifa-ranking-20260611",
+        model_version="ranking-baseline-v1",
+    )
+    return RankingPredictor(PredictionService(models), rules.fifa_rankings)
 
 
 def main() -> int:

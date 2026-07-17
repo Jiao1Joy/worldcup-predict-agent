@@ -18,17 +18,20 @@ const FALLBACK: BacktestReport = {
   ],
 };
 
-export function BacktestPage() {
-  const [report, setReport] = useState<BacktestReport>(FALLBACK);
+export function BacktestPage({
+  offline = import.meta.env.VITE_PORTFOLIO_OFFLINE !== 'false',
+}: { offline?: boolean } = {}) {
+  const [report, setReport] = useState<BacktestReport | null>(offline ? FALLBACK : null);
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (offline) return;
     let active = true;
     forecastApi.backtest2022()
       .then((r) => { if (active) setReport(r); })
-      .catch(() => { if (active) setError('Backtest API unavailable; showing committed fixture metrics.'); });
+      .catch(() => { if (active) setError('Backtest API unavailable.'); });
     return () => { active = false; };
-  }, []);
+  }, [offline]);
 
   return (
     <main className="page backtest-page">
@@ -36,8 +39,9 @@ export function BacktestPage() {
       <h1>2022 Backtest</h1>
       <p className="window">Training cutoff 2022-11-19 · Evaluation window 2022-11-20 to 2022-12-18</p>
       {error && <p className="error" role="alert">{error}</p>}
-      <MetricsStrip report={report} />
-      <CalibrationChart report={report} />
+      {!report && !error && <p>Loading backtest…</p>}
+      {report && <MetricsStrip report={report} />}
+      {report && <CalibrationChart report={report} />}
       <p className="integrity">Displayed RPS equals the mean of per-match rows within 1e-12.</p>
     </main>
   );

@@ -5,6 +5,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from worldcup_agent.prediction.contracts import MatchPrediction
+from worldcup_agent.prediction.calibration import calibration_features, outcome_probabilities
 from worldcup_agent.prediction.elo import EloEngine
 from worldcup_agent.prediction.features import elo_goal_intensities
 from worldcup_agent.prediction.goal_models import GoalModelParameters, dixon_coles_matrix
@@ -46,12 +47,7 @@ class RuntimeModels:
 
 
 def _matrix_outcomes(matrix: np.ndarray) -> tuple[float, float, float]:
-    home = sum(
-        float(cell) for i, row in enumerate(matrix) for j, cell in enumerate(row) if i > j
-    )
-    draw = sum(float(row[i]) for i, row in enumerate(matrix) if i < len(row))
-    away = 1.0 - home - draw
-    return home, draw, away
+    return tuple(outcome_probabilities(matrix))
 
 
 def _reconcile_matrix(matrix: np.ndarray, home: float, draw: float, away: float) -> np.ndarray:
@@ -105,16 +101,10 @@ class PredictionService:
         params = self.models.goal_parameters
 
         # 1. Elo prior outcome probabilities.
-        elo_expected = self._elo.expected_home_score_from_ratings(home_elo, away_elo, neutral)
-        elo_home = elo_expected
-        elo_away = 1.0 - elo_expected
-        elo_draw = max(1.0 - elo_home - elo_away, 0.0)
-        if elo_draw <= 0:
-            elo_draw = 0.27
-            scale = elo_home + elo_away
-            elo_home, elo_away = elo_home / scale * (1 - elo_draw), elo_away / scale * (1 - elo_draw)
-        elo_probs = np.array([elo_home, elo_draw, elo_away], dtype=float)
-        elo_probs = elo_probs / elo_probs.sum()
+        features = calibration_features(
+            home_elo, away_elo, neutral, params, max_goals=self.models.max_goals
+        )
+        elo_probs = features[:3]
 
         # 2. Elo-driven expected goals.
         home_lambda, away_lambda = elo_goal_intensities(
@@ -132,7 +122,7 @@ class PredictionService:
         # 5. Baseline calibrator features (Elo + goal priors); when no trained
         #    calibrator is available, fall back to the goal-model probabilities.
         if self.models.baseline is not None:
-            features = np.array([[elo_home, elo_draw, elo_away, goal_home, goal_draw, goal_away]])
+            features = features.reshape(1, -1)
             classes = list(self.models.baseline.classes_)
             proba = self.models.baseline.predict_proba(features)[0]
             ml_probs = np.array([0.0, 0.0, 0.0], dtype=float)

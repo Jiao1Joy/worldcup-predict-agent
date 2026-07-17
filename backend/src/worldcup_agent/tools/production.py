@@ -19,6 +19,45 @@ from worldcup_agent.tools.forecast import (
 from worldcup_agent.tools.registry import ToolRegistry
 
 
+class RankingPredictor:
+    """Adapter that supplies a stable Elo prior derived from official FIFA ranks."""
+
+    def __init__(self, prediction_service: Any, rankings: dict[str, int]) -> None:
+        self.prediction_service = prediction_service
+        self.rankings = rankings
+
+    def predict(self, match_id: str, home_team: str, away_team: str, **context):
+        def rating(team: str) -> float:
+            return 2050.0 - 8.0 * (self.rankings[team] - 1)
+
+        return self.prediction_service.predict(
+            match_id,
+            home_team,
+            away_team,
+            rating(home_team),
+            rating(away_team),
+            True,
+        )
+
+
+class HistoricalEloPredictor:
+    """Adapter backed by the final pre-cutoff Elo state from a data snapshot."""
+
+    def __init__(self, prediction_service: Any, ratings: dict[str, float]) -> None:
+        self.prediction_service = prediction_service
+        self.ratings = ratings
+
+    def predict(self, match_id: str, home_team: str, away_team: str, **context):
+        return self.prediction_service.predict(
+            match_id,
+            home_team,
+            away_team,
+            self.ratings.get(home_team, 1500.0),
+            self.ratings.get(away_team, 1500.0),
+            True,
+        )
+
+
 @dataclass
 class ProductionServices:
     data_version: str
@@ -31,13 +70,79 @@ class ProductionServices:
     backtest: Any = None
 
     @classmethod
+    def from_artifacts(
+        cls, artifacts_dir: str, rules_dir: str
+    ) -> ProductionServices:
+        """Load hash-checked trained models and the matching Elo snapshot."""
+        from pathlib import Path
+
+        import pandas as pd
+
+        from worldcup_agent.artifacts.repository import ArtifactRepository
+        from worldcup_agent.data.contracts import DataSnapshotManifest
+        from worldcup_agent.prediction.elo import EloEngine, MatchForElo
+        from worldcup_agent.prediction.goal_models import GoalModelParameters
+        from worldcup_agent.prediction.service import PredictionService, RuntimeModels
+        from worldcup_agent.tournament.rules import load_rules
+        from worldcup_agent.tournament.service import TournamentForecastService
+        from worldcup_agent.tournament.simulator import TournamentSimulator
+
+        root = Path(artifacts_dir)
+        snapshot_path = root / "snapshot.parquet"
+        snapshot_manifest_path = root / "snapshot.manifest.json"
+        model_root = root / "artifacts"
+        manifests = sorted(model_root.glob("*.manifest.json"))
+        if not snapshot_path.exists() or not snapshot_manifest_path.exists() or len(manifests) != 1:
+            raise ValueError("production artifacts require one snapshot and one model manifest")
+
+        snapshot_manifest = DataSnapshotManifest.model_validate_json(
+            snapshot_manifest_path.read_text(encoding="utf-8")
+        )
+        model_version = manifests[0].name.removesuffix(".manifest.json")
+        baseline, model_manifest = ArtifactRepository(model_root).load(
+            model_version, snapshot_manifest.data_version
+        )
+        if not model_manifest.goal_parameters:
+            raise ValueError("model manifest is missing fitted goal parameters")
+        models = RuntimeModels(
+            goal_parameters=GoalModelParameters.model_validate(model_manifest.goal_parameters),
+            fusion_weights=model_manifest.fusion_weights,
+            data_version=model_manifest.data_version,
+            model_version=model_manifest.model_version,
+            baseline=baseline,
+        )
+        prediction_service = PredictionService(models)
+
+        elo = EloEngine()
+        snapshot = pd.read_parquet(snapshot_path).sort_values("date")
+        for _, match in snapshot.iterrows():
+            elo.process(
+                MatchForElo(
+                    home_team=str(match["home_team"]),
+                    away_team=str(match["away_team"]),
+                    home_score=int(match["home_score"]),
+                    away_score=int(match["away_score"]),
+                    tournament=str(match["tournament"]),
+                    neutral=bool(match["neutral"]),
+                )
+            )
+        ratings = {team: elo.rating(team) for team in set(snapshot["home_team"]) | set(snapshot["away_team"])}
+        rules = load_rules(rules_dir)
+        simulator = TournamentSimulator(rules, HistoricalEloPredictor(prediction_service, ratings))
+        return cls(
+            data_version=model_manifest.data_version,
+            model_version=model_manifest.model_version,
+            rules_version=rules.rules_version,
+            snapshot_cutoff=snapshot_manifest.snapshot_cutoff,
+            prediction_service=prediction_service,
+            tournament_service=TournamentForecastService(simulator, batch_size=200),
+            backtest=model_manifest.metrics,
+        )
+
+    @classmethod
     def fixture(cls) -> ProductionServices:
         from datetime import UTC, datetime
-        from math import factorial
 
-        import numpy as np
-
-        from worldcup_agent.prediction.contracts import MatchPrediction
         from worldcup_agent.prediction.service import PredictionService, RuntimeModels
         from worldcup_agent.tournament.service import TournamentForecastService
         from worldcup_agent.tournament.simulator import TournamentSimulator
@@ -50,25 +155,7 @@ class ProductionServices:
         models = RuntimeModels.baseline_fixture(data_version="fixture-data-v1", model_version="fixture-model-v1")
         prediction_service = PredictionService(models)
 
-        class FixturePredictor:
-            def predict(self, match_id: str, home_team: str, away_team: str, **context):
-                home_strength = (sum(ord(c) for c in home_team) % 100) / 100.0
-                away_strength = (sum(ord(c) for c in away_team) % 100) / 100.0
-                home_lambda = max(0.3, 0.8 + (home_strength - away_strength) * 1.5)
-                away_lambda = max(0.3, 0.8 - (home_strength - away_strength) * 1.5)
-                goals = np.arange(9)
-                home_pois = np.exp(-home_lambda) * home_lambda**goals / np.array([factorial(g) for g in goals])
-                away_pois = np.exp(-away_lambda) * away_lambda**goals / np.array([factorial(g) for g in goals])
-                matrix = np.outer(home_pois, away_pois)
-                matrix = matrix / matrix.sum()
-                return MatchPrediction.from_score_matrix(
-                    match_id=match_id, home_team=home_team, away_team=away_team,
-                    expected_home_goals=float(home_lambda), expected_away_goals=float(away_lambda),
-                    score_matrix=matrix.tolist(), data_version="fixture-data-v1",
-                    model_version="fixture-model-v1", evidence_ids=[f"MATCH-{match_id}-PRED"],
-                )
-
-        simulator = TournamentSimulator(rules, FixturePredictor())
+        simulator = TournamentSimulator(rules, RankingPredictor(prediction_service, rules.fifa_rankings))
         tournament_service = TournamentForecastService(simulator, batch_size=200)
         return cls(
             data_version="fixture-data-v1",

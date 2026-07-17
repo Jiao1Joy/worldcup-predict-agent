@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +18,17 @@ class ForecastRepository:
     def __init__(self, root: str | Path) -> None:
         self.root = Path(root)
 
+    def _read_flat_forecast(self) -> dict:
+        flat_path = self.root / "forecast.json"
+        manifest_path = self.root / "artifact-manifest.json"
+        if manifest_path.exists():
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            expected = manifest.get("forecast.json")
+            actual = hashlib.sha256(flat_path.read_bytes()).hexdigest()
+            if expected != actual:
+                raise ValueError("flat forecast artifact hash mismatch")
+        return json.loads(flat_path.read_text(encoding="utf-8"))
+
     def publish(self, forecast: PublishedForecast) -> None:
         target = self.root / forecast.forecast_id
         if target.exists():
@@ -31,12 +43,20 @@ class ForecastRepository:
 
     def get(self, forecast_id: str) -> dict:
         path = self.root / forecast_id / "forecast.json"
+        flat_path = self.root / "forecast.json"
+        if not path.exists() and flat_path.exists():
+            payload = self._read_flat_forecast()
+            if payload.get("forecast_id") == forecast_id:
+                return payload
         if not path.exists():
             raise KeyError(forecast_id)
         return json.loads(path.read_text(encoding="utf-8"))
 
     def current(self) -> dict:
         pointer = self.root / "current.json"
+        flat_path = self.root / "forecast.json"
+        if not pointer.exists() and flat_path.exists():
+            return self._read_flat_forecast()
         if not pointer.exists():
             raise KeyError("no current forecast")
         forecast_id = json.loads(pointer.read_text(encoding="utf-8"))["forecast_id"]

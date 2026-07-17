@@ -24,6 +24,6 @@ test('reflects mocked API values', async () => {
     })),
   );
   vi.stubGlobal('fetch', fetchMock);
-  render(<MemoryRouter><BacktestPage /></MemoryRouter>);
+  render(<MemoryRouter><BacktestPage offline={false} /></MemoryRouter>);
   await waitFor(() => expect(screen.getAllByText('0.1999').length).toBeGreaterThan(0));
 });

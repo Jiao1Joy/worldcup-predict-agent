@@ -15,6 +15,10 @@
 - **Source PDF SHA-256:** `bad4ea83cf1f51055598b0c12c3dab280a78777e08a623b9e9098508b4ecc8d9`
 - **Retrieved:** 2026-07-16
 - **Extraction script:** `scripts/extract_fifa_annex_c.py` (validated: all 495 combinations, eight unique groups per row, slot mappings consistent).
+- **Official fixtures:** `backend/rules/fifa_2026/fixtures.json`, including the FIFA M073-M104 knockout source graph.
+- **FIFA ranking snapshot:** `backend/rules/fifa_2026/fifa_rankings.json`, official men's ranking dated 2026-06-11.
+- **Ranking source:** https://inside.fifa.com/fifa-world-ranking/men
+- **Ranking JSON SHA-256:** `b55a6afcd78fdf81c461319da3e406eb2a6f402b0abb7883ccbb22c40e338446`
 
 ## Rebuild
 

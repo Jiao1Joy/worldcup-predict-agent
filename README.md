@@ -17,13 +17,7 @@ cd frontend
 npm install
 npm run dev
 # 打开 http://localhost:5173
-```
-
-或一条命令启动容器化演示：
-
-```powershell
-docker compose up -d --build
-# 打开 http://127.0.0.1:4173
+# 可视化探索页：http://localhost:5173/explore
 ```
 
 ## 功能
@@ -32,7 +26,7 @@ docker compose up -d --build
 - **赛事模拟**：48 队、12 组、72 场小组赛 + 32 场淘汰赛 = 104 场；495 行 Annexe C 最佳第三名映射；递归 head-to-head tie-break；蒙特卡洛与收敛记录。
 - **Agent 运行时**：单 Orchestrator + Tool Registry + Evidence Store + Critic；检查点恢复、人工审批、Replay、故障注入；LangGraph 编排；FastAPI/SSE。
 - **LLM 集成**：OpenAI-compatible provider adapter；无 key 时确定性 fallback；证据约束发布；不展示思考链。
-- **产品 UI**：冠军总览、赛事树、单场比分热力图、球队阶段概率、2022 回测、Agent Workbench；移动端适配与可访问图表。
+- **产品 UI**：冠军总览、赛事树、单场比分热力图、球队阶段概率、2022 回测、Agent Workbench，以及由 `TournamentForecast` 实时派生的 48 队分组、Annexe C 与淘汰赛可视化；移动端适配与可访问图表。
 
 ## 测试与重建
 
@@ -63,11 +57,11 @@ worldcup-rebuild --source ../international_results-master/results.csv `
 | 后端 Agent Runtime | 已完成 | LangGraph 编排、工具注册表、SQLite 持久化、检查点恢复、人工审批、FastAPI/SSE |
 | 预测引擎与赛事模拟 | 已完成 | Elo、三种进球模型、IPF 校准、2022 回测、495 Annexe C、104 场模拟、蒙特卡洛 |
 | 前端 Agent Workbench | 已完成 | React + xyflow Run Graph、Step Inspector、Replay、故障注入、移动端适配 |
-| 前端预测产品 UI | 已完成 | Overview、赛程树、单场/球队详情、2022 回测、Agent Workbench 联动 |
+| 前端预测产品 UI | 已完成 | Overview、赛程树、单场/球队详情、2022 回测、Visual Explorer、Agent Workbench 联动 |
 | LLM Agent 集成 | 已完成 | OpenAI-compatible adapter、确定性 fallback、证据约束发布 |
 | 离线 Portfolio 包 | 已完成 | artifacts/demo 含 forecast、completed-run、evidence、backtest |
-| 容器化与 CI | 已完成 | Docker Compose、GitHub Actions、安全 redaction、验收报告 |
-| 测试、Docker、CI 与验收报告 | 待实现 | 必须由 Coding Agent 实际运行后生成，不能以计划中的预期结果代替 |
+| 自动化测试与验收 | 已完成 | 后端 86 项、前端 25 项、生产构建及 4 条浏览器流程均通过 |
+| 完整训练、公开部署、Docker 验证 | 不在范围内 | 按项目所有者决定，不作为本地 Portfolio 的完成条件 |
 
 ## 目标架构
 
@@ -84,11 +78,9 @@ flowchart LR
 
 核心原则：数值模型负责概率、比分和排名计算；LLM 负责规划、工具编排与基于证据的解释，不直接编造预测数值，也不展示原始 Chain of Thought。
 
-## 交给 ZCode 实施
+## 实施与验收
 
-从 [`docs/ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md) 开始。Coding Agent 应先阅读完整产品设计，再严格按七份计划的既定顺序逐 Task 执行 TDD、验证和提交；只有当前计划的 Completion Gate 通过后，才能进入下一阶段。
-
-推荐启动指令已写在交接指南中。最终完成依据不是生成了多少文件，而是系统集成计划产出的 `ACCEPTANCE_REPORT` 和对应的实际测试证据。
+七阶段实施计划已经完成。实际执行结果记录在 [`docs/ACCEPTANCE_REPORT.md`](docs/ACCEPTANCE_REPORT.md)，历史交接说明保留在 [`docs/ZCODE_HANDOFF.md`](docs/ZCODE_HANDOFF.md)。最终范围是可复现、可离线演示的本地 Portfolio；完整 GBDT 训练、公开部署与 Docker 运行验证明确不属于交付条件。
 
 ### 本地启动 Agent Runtime（已实现）
 

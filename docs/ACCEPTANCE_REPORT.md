@@ -1,7 +1,7 @@
 # Acceptance Report
 
-Generated: 2026-07-16
-Commit: `47fab27e602584c02f4cf9f53b09091a9dfee23e` (and subsequent Plan 7 commits)
+Updated: 2026-07-17
+Scope: local Portfolio application and its reproducible baseline artifacts
 
 All criteria below were executed against the actual repository state. `PASS` means the command ran and succeeded; `NOT RUN` means an optional profile that was not executed locally.
 
@@ -35,9 +35,9 @@ All criteria below were executed against the actual repository state. `PASS` mea
 
 | Gate | Status | Command |
 | --- | --- | --- |
-| Backend pytest | PASS | `cd backend && python -m pytest -q` → 81 passed |
+| Backend pytest | PASS | `cd backend && python -m pytest -q` → 86 passed |
 | Backend ruff | PASS | `cd backend && python -m ruff check src tests` → All checks passed |
-| Frontend vitest | PASS | `cd frontend && npm test` → 23 passed |
+| Frontend vitest | PASS | `cd frontend && npm test` → 25 passed |
 | Frontend build | PASS | `cd frontend && npm run build` → built |
 | Frontend Playwright | PASS | `cd frontend && npm run e2e` → 4 passed |
 | Portfolio bundle integrity | PASS | `tests/integration/test_portfolio_bundle.py` |
@@ -49,15 +49,17 @@ All criteria below were executed against the actual repository state. `PASS` mea
 | --- | --- | --- |
 | Overview → Tournament → Match → Agent | PASS | `e2e/forecast-product.spec.ts::visitor moves from champion result...` |
 | Mobile 390px no horizontal overflow | PASS | `e2e/forecast-product.spec.ts::mobile product has no page-level horizontal overflow` |
+| Runtime forecast → Visual Explorer | PASS | `/explore` derives probabilities, groups, Annexe C and knockout paths from the supplied `TournamentForecast` |
 | Workbench inspect + replay | PASS | `e2e/portfolio-demo.spec.ts::portfolio visitor can inspect and replay...` |
 | Offline portfolio requires no backend | PASS | fixture-backed `App` and `forecast-fixture.ts` |
 
-## Container
+## Explicitly excluded scope
 
-| Criterion | Status |
-| --- | --- |
-| `compose.yaml` builds backend + frontend | PASS (defined; local Docker execution NOT RUN in this environment) |
-| Health check endpoint | PASS (`/api/health` returns `{"status":"ok"}`) |
+| Item | Status | Reason |
+| --- | --- | --- |
+| Full GBDT training | OUT OF SCOPE | The reproducible baseline model is the product profile; no full-training run is required |
+| Public deployment | OUT OF SCOPE | The deliverable is a local Portfolio application |
+| Docker runtime/build verification | OUT OF SCOPE | Docker is not required by the project owner |
 
 ## Documentation
 
@@ -70,13 +72,12 @@ All criteria below were executed against the actual repository state. `PASS` mea
 | DEMO_SCRIPT (six-minute) | PASS |
 | LLM_AGENT / PREDICTION_ENGINE / TOURNAMENT_RULES | PASS |
 
-## Optional profiles (NOT RUN)
+## Optional integration profile
 
 | Profile | Status | Reason |
 | --- | --- | --- |
-| Full GBDT training (LightGBM/XGBoost/CatBoost) | NOT RUN | Requires `[full-training]` extras and GPU time; baseline Logistic path is the CI default and passes |
 | Live LLM run | NOT RUN | Requires an API key; deterministic fallback path is verified and is the default |
 
 ## Conclusion
 
-All required Portfolio criteria are PASS. The optional Full Training and Live LLM profiles are NOT RUN with reasons; their code, configuration, test doubles, and documentation exist and are covered by automated tests. The project is complete per the completion definition in `docs/ZCODE_HANDOFF.md`.
+All required local Portfolio criteria are PASS. Full training, public deployment and Docker verification are intentionally excluded by the project owner. The live LLM profile remains optional; the default deterministic fallback is verified. The project is complete within this documented scope.

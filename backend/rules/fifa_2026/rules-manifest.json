@@ -4,11 +4,13 @@
   "source_urls": [
     "https://www.fifa.com/en/articles/groups-how-teams-qualify-tie-breakers",
     "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums",
-    "https://digitalhub.fifa.com/m/636f5c9c6f29771f/original/FWC2026_regulations_EN.pdf"
+    "https://digitalhub.fifa.com/m/636f5c9c6f29771f/original/FWC2026_regulations_EN.pdf",
+    "https://inside.fifa.com/fifa-world-ranking/men"
   ],
   "source_sha256": "b8aa41ee9660bc0703e127942f1a3beaae8c2ce3e602bbc43fa76b3b16475553",
   "groups_sha256": "5d791712c34609f1ae9495bce9242a95f6a620a95f5a404581d7e637d9e62bbc",
-  "fixtures_sha256": "e4634b1db7e047680c9619aafb4791477b01a3289a92ead3c03cd3d963281839",
+  "fixtures_sha256": "b877d68aa50c2e7c465bf02bf47858382d02e464061c75f8a0d3df73cc596b83",
   "annex_c_sha256": "b8aa41ee9660bc0703e127942f1a3beaae8c2ce3e602bbc43fa76b3b16475553",
+  "fifa_rankings_sha256": "b55a6afcd78fdf81c461319da3e406eb2a6f402b0abb7883ccbb22c40e338446",
   "retrieved_at": "2026-07-16"
 }

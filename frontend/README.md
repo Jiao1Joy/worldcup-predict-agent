@@ -4,6 +4,8 @@ Combines the user-facing forecast product (champion overview, tournament bracket
 
 ## Routes
 
+- `/explore` — Runtime-derived visual explorer for probabilities, groups, Annex C, and the knockout bracket
+
 - `/` — Forecast overview: champion, top-10 probabilities, all 48 teams, evidence link
 - `/tournament` — Full bracket (knockout columns + group selector)
 - `/matches/:matchId` — Outcome probabilities, expected goals, score matrix, evidence
@@ -20,10 +22,12 @@ npm install
 npm run dev
 ```
 
-Live mode connects to a backend run:
+The offline mode is the default for local portfolio and E2E use. Live mode
+loads `/api/forecasts/current` and never silently falls back after an integrity
+or network error:
 
 ```powershell
-$env:VITE_DEMO_RUN_ID="wc26-demo-run"
+$env:VITE_PORTFOLIO_OFFLINE="false"
 npm run dev
 ```
 
@@ -38,4 +42,3 @@ npm run e2e     # Playwright portfolio + product journeys
 ```
 
 All charts expose an aria-label and/or a screen-reader table; the layout stays within the viewport at 390px.
-

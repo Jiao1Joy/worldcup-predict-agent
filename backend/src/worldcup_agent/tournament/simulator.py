@@ -26,9 +26,7 @@ class TournamentRunResult:
 
 
 def _fifa_rankings_from_rules(rules: TournamentRules) -> dict[str, int]:
-    # Deterministic synthetic ranking by name order for the fixture-only predictor;
-    # production callers inject real FIFA rankings via the predictor context.
-    return {team: index + 1 for index, team in enumerate(sorted(rules.team_ids))}
+    return rules.fifa_rankings
 
 
 def _predict_matrix(
@@ -36,11 +34,11 @@ def _predict_matrix(
     match_id: str,
     home_team: str,
     away_team: str,
-) -> tuple[Any, float, float]:
+) -> tuple[Any, float, float, Any]:
     prediction = predictor.predict(match_id, home_team, away_team)
     matrix = np.array(prediction.score_matrix, dtype=float)
     matrix = matrix / matrix.sum()
-    return matrix, prediction.expected_home_goals, prediction.expected_away_goals
+    return matrix, prediction.expected_home_goals, prediction.expected_away_goals, prediction
 
 
 class TournamentSimulator:
@@ -69,7 +67,9 @@ class TournamentSimulator:
             home_team = teams[home_pos - 1]
             away_team = teams[away_pos - 1]
 
-            matrix, exp_h, exp_a = _predict_matrix(self.predictor, fixture["match_id"], home_team, away_team)
+            matrix, exp_h, exp_a, prediction = _predict_matrix(
+                self.predictor, fixture["match_id"], home_team, away_team
+            )
             home_goals, away_goals = sample_group_score(matrix, rng)
 
             slot = MatchSlot(
@@ -79,6 +79,7 @@ class TournamentSimulator:
                 away_source=fixture["away_source"],
                 home_team=home_team,
                 away_team=away_team,
+                prediction=prediction,
                 winner=None,
             )
             matches.append(slot)
@@ -111,9 +112,12 @@ class TournamentSimulator:
         )
         winners: dict[str, str] = {}
         for match in r32_matches:
-            matrix, exp_h, exp_a = _predict_matrix(self.predictor, match.match_id, match.home_team, match.away_team)
+            matrix, exp_h, exp_a, prediction = _predict_matrix(
+                self.predictor, match.match_id, match.home_team, match.away_team
+            )
             ko = sample_knockout_winner(match.home_team, match.away_team, matrix, rng, expected_home_goals=exp_h, expected_away_goals=exp_a)
             match.winner = ko.winner
+            match.prediction = prediction
             winners[match.match_id] = ko.winner
             matches.append(match)
             matches_by_id[match.match_id] = match
@@ -125,7 +129,9 @@ class TournamentSimulator:
         for fixture in progression_fixtures:
             home_team = self._resolve_progression(fixture["home_source"], winners, matches_by_id)
             away_team = self._resolve_progression(fixture["away_source"], winners, matches_by_id)
-            matrix, exp_h, exp_a = _predict_matrix(self.predictor, fixture["match_id"], home_team, away_team)
+            matrix, exp_h, exp_a, prediction = _predict_matrix(
+                self.predictor, fixture["match_id"], home_team, away_team
+            )
             ko = sample_knockout_winner(home_team, away_team, matrix, rng, expected_home_goals=exp_h, expected_away_goals=exp_a)
             winners[fixture["match_id"]] = ko.winner
             slot = MatchSlot(
@@ -135,6 +141,7 @@ class TournamentSimulator:
                 away_source=fixture["away_source"],
                 home_team=home_team,
                 away_team=away_team,
+                prediction=prediction,
                 winner=ko.winner,
             )
             matches.append(slot)

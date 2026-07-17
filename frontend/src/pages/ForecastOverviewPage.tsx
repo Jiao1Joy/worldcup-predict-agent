@@ -9,6 +9,7 @@ export function ForecastOverviewPage({ forecast }: { forecast: TournamentForecas
     <main className="page overview-page">
       <nav className="top-nav">
         <Link to="/tournament">Tournament</Link>
+        <Link to="/explore">Visual Explorer</Link>
         <Link to="/backtest">2022 Backtest</Link>
       </nav>
       <ChampionHero forecast={forecast} />

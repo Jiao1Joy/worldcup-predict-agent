@@ -53,9 +53,3 @@ jobs:
           cache: pip
       - run: python -m pip install -e ".[dev]"
       - run: python -m pytest tests/integration/test_portfolio_bundle.py -q
-
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: docker compose build

@@ -12,6 +12,7 @@ class ModelArtifactManifest(BaseModel):
     trained_until: str
     validation_window: list[str]
     selected_goal_model: str
+    goal_parameters: dict[str, float | str | bool] = Field(default_factory=dict)
     fusion_weights: dict[str, float]
     calibrator: str
     files: list[ArtifactFile]

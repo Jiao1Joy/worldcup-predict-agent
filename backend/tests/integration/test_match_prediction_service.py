@@ -1,5 +1,7 @@
 import pytest
+import numpy as np
 
+from worldcup_agent.prediction.calibration import train_baseline_calibrator
 from worldcup_agent.prediction.service import PredictionService, RuntimeModels
 
 
@@ -30,3 +32,19 @@ def test_score_matrix_regions_match_fused_outcomes() -> None:
     assert matrix_home == pytest.approx(result.outcomes.home, abs=1e-9)
     assert matrix_draw == pytest.approx(result.outcomes.draw, abs=1e-9)
     assert matrix_away == pytest.approx(result.outcomes.away, abs=1e-9)
+
+
+def test_trained_six_feature_calibrator_matches_runtime_contract() -> None:
+    features = np.array(
+        [
+            [0.60, 0.25, 0.15, 0.55, 0.25, 0.20],
+            [0.30, 0.40, 0.30, 0.25, 0.45, 0.30],
+            [0.15, 0.25, 0.60, 0.20, 0.25, 0.55],
+        ]
+    )
+    models = RuntimeModels.baseline_fixture(data_version="data-v1", model_version="model-v1")
+    models.baseline = train_baseline_calibrator(features, np.array([0, 1, 2]))
+    result = PredictionService(models).predict(
+        "m-calibrated", "A", "B", home_elo=1600, away_elo=1500, neutral=True
+    )
+    assert result.outcomes.home + result.outcomes.draw + result.outcomes.away == pytest.approx(1.0)

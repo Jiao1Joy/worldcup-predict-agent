@@ -18,4 +18,8 @@ test('mobile product has no page-level horizontal overflow', async ({ page }) =>
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.goto('/tournament');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.goto('/explore');
+  await expect(page.getByRole('heading', { name: /2026 forecast explorer/i })).toBeVisible();
+  await page.getByRole('tab', { name: /annex c/i }).click();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

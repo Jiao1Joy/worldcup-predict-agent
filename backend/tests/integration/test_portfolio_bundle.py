@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).parents[3] / "artifacts" / "demo"
@@ -11,5 +12,11 @@ def test_committed_portfolio_bundle_is_complete_and_self_consistent() -> None:
 
     assert len(forecast["matches"]) == 104
     assert len(forecast["team_probabilities"]) == 48
+    assert all(match["prediction"] is not None for match in forecast["matches"])
+    final = next(match for match in forecast["matches"] if match["match_id"] == "M104")
+    assert final["winner"] == forecast["champion"]["team"]
     assert forecast["run_id"] == run["state"]["run_id"]
     assert set(forecast["evidence_ids"]) <= {item["evidence_id"] for item in evidence}
+    manifest = json.loads((ROOT / "artifact-manifest.json").read_text(encoding="utf-8"))
+    for name, expected in manifest.items():
+        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected

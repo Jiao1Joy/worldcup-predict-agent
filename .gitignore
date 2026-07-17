@@ -20,6 +20,7 @@ frontend/.vite/
 .playwright/
 test-results/
 playwright-report/
+*.log
 
 # Environment & secrets
 .env

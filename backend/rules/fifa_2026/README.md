@@ -30,6 +30,15 @@ Validation requires exactly 12 keys (`A` through `L`), four teams per group,
 48 globally unique team IDs, and a match for every ID in the historical
 results dataset. All checks passed on 2026-07-16.
 
+## Match graph and FIFA rankings
+
+`fixtures.json` versions all M001-M104 source slots. In particular, M073-M088
+use the official round-of-32 graph and each `3` placeholder is resolved against
+the named group-winner slot in Annexe C; mappings are never consumed by row
+order. `fifa_rankings.json` stores the official men's ranking snapshot dated
+2026-06-11 and must cover exactly the same 48 canonical team IDs as
+`groups.json`. Both files are SHA-256 checked by `rules-manifest.json` at load.
+
 ## Annexe C
 
 - Source: [Regulations for the FIFA World Cup 26](https://digitalhub.fifa.com/m/636f5c9c6f29771f/original/FWC2026_regulations_EN.pdf)

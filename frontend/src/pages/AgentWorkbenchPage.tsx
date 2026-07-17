@@ -6,9 +6,8 @@ import { completedRunFixture } from '../test/completed-run';
 export function AgentWorkbenchPage() {
   const { runId } = useParams();
   const targetRunId = runId ?? completedRunFixture.state.run_id;
-  // Offline portfolio mode falls back to the committed completed-run fixture
-  // when the live backend is unavailable.
-  const controller = useRunController(targetRunId, false);
+  const offline = import.meta.env.VITE_PORTFOLIO_OFFLINE !== 'false';
+  const controller = useRunController(targetRunId, false, !offline);
   const initial = controller.initialRun ?? completedRunFixture.initial_state;
   const current = controller.run ?? completedRunFixture.state;
   const events = controller.events.length ? controller.events : completedRunFixture.events;

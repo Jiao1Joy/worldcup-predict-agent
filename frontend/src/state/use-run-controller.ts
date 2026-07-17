@@ -4,23 +4,24 @@ import { subscribeToRunEvents } from '../api/events';
 import type { RunEvent, RunState } from '../domain/run';
 import { materializeEvent } from './run-reducer';
 
-export function useRunController(runId: string, stream = true) {
+export function useRunController(runId: string, stream = true, enabled = true) {
   const [run, setRun] = useState<RunState | null>(null);
   const [initialRun, setInitialRun] = useState<RunState | null>(null);
   const [events, setEvents] = useState<RunEvent[]>([]);
 
   useEffect(() => {
+    if (!enabled) return;
     void runApi.get(runId).then(setRun);
     void runApi.getInitial(runId).then(setInitialRun);
-  }, [runId]);
+  }, [enabled, runId]);
 
   useEffect(() => {
-    if (!stream) return;
+    if (!enabled || !stream) return;
     return subscribeToRunEvents(runId, (event) => {
       setEvents((current) => current.some((item) => item.sequence === event.sequence) ? current : [...current, event]);
       setRun((current) => current ? materializeEvent(current, event) : current);
     });
-  }, [runId, stream]);
+  }, [enabled, runId, stream]);
 
   const injectFailure = useCallback(async () => {
     const updated = await runApi.injectFailure(runId);

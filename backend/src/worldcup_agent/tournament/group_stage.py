@@ -45,7 +45,7 @@ class StandingRow:
             self.points,
             self.goal_difference,
             self.goals_for,
-            -self.fair_play,
+            self.fair_play,
             -self.fifa_ranking,
         )
 

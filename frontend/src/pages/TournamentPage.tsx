@@ -7,6 +7,7 @@ export function TournamentPage({ forecast }: { forecast: TournamentForecast }) {
     <main className="page tournament-page">
       <nav className="top-nav">
         <Link to="/">Overview</Link>
+        <Link to="/explore">Visual Explorer</Link>
         <Link to="/backtest">2022 Backtest</Link>
       </nav>
       <h1>Tournament Bracket</h1>

@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/vitest';
+import { createElement, type ComponentType } from 'react';
 import { vi } from 'vitest';
 
 class TestResizeObserver {
@@ -17,14 +18,24 @@ vi.mock('echarts-for-react', () => ({
   },
 }));
 
-// jsdom does not populate `event.view`, which d3-zoom/d3-drag rely on when
-// xyflow nodes receive mouse events in unit tests. The resulting error is a
-// known environment limitation and does not affect node-click handling.
-const previousErrorHandler = window.onerror;
-window.onerror = (message, _source, _lineno, _colno, error) => {
-  const text = typeof message === 'string' ? message : error?.message ?? '';
-  if (text.includes("reading 'document'")) {
-    return true;
-  }
-  return previousErrorHandler ? previousErrorHandler(message, _source, _lineno, _colno, error) : false;
-};
+// React Flow delegates pointer handling to d3, whose browser-only event view
+// is unavailable in jsdom. Keep unit tests focused on our graph nodes/clicks.
+vi.mock('@xyflow/react', () => ({
+  Background: () => null,
+  Controls: () => null,
+  ReactFlow: ({ nodes, nodeTypes, onNodeClick, children }: {
+    nodes: Array<{ id: string; type?: string; data: unknown }>;
+    nodeTypes: Record<string, ComponentType<{ id: string; data: unknown }>>;
+    onNodeClick?: (event: unknown, node: { id: string }) => void;
+    children?: unknown;
+  }) => createElement(
+    'div',
+    null,
+    ...nodes.map((node) => createElement(
+      'button',
+      { key: node.id, type: 'button', onClick: () => onNodeClick?.({}, node) },
+      createElement(nodeTypes[node.type ?? 'run'], { id: node.id, data: node.data }),
+    )),
+    children as never,
+  ),
+}));

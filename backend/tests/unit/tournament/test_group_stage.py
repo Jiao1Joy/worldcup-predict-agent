@@ -1,4 +1,9 @@
-from worldcup_agent.tournament.group_stage import GroupResult, create_group_matches, rank_group
+from worldcup_agent.tournament.group_stage import (
+    GroupResult,
+    StandingRow,
+    create_group_matches,
+    rank_group,
+)
 
 
 def test_four_team_group_contains_six_unique_matches() -> None:
@@ -37,3 +42,9 @@ def test_three_way_recursive_tie_uses_mini_table() -> None:
     assert set(ranked[:3]) == {"A1", "A2", "A3"}
     # When everything else is equal, FIFA ranking (ascending) breaks the tie.
     assert ranked[:3] == ["A1", "A2", "A3"]
+
+
+def test_fewer_fair_play_deductions_rank_higher() -> None:
+    clean = StandingRow(team="clean", fair_play=-1, fifa_ranking=20)
+    sanctioned = StandingRow(team="sanctioned", fair_play=-3, fifa_ranking=10)
+    assert sorted([sanctioned, clean], key=lambda row: row.sort_key(), reverse=True)[0] == clean

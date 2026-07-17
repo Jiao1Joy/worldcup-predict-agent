@@ -24,7 +24,7 @@ class TournamentForecastService:
         convergence = ConvergenceRecord()
         champion_counts: dict[str, int] = defaultdict(int)
         stage_counts: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
-        last_matches: list[MatchSlot] = []
+        representative_runs: dict[str, list[MatchSlot]] = {}
         prev_champion_probs: dict[str, float] = {}
 
         remaining = runs
@@ -41,7 +41,7 @@ class TournamentForecastService:
                 sub_seed = int(seed_seq.spawn(1)[0].generate_state(1)[0])
                 result = self.simulator.run_once(sub_seed)
                 batch_champions[result.champion] += 1
-                last_matches = result.matches
+                representative_runs.setdefault(result.champion, result.matches)
                 # Track stage progression: a team's deepest stage this run.
                 deepest = _deepest_stages(result.matches)
                 for team, stage in deepest.items():
@@ -92,13 +92,15 @@ class TournamentForecastService:
             )
 
         forecast_id = f"fc-{seed}-{runs}"
+        modal_champion = max(team_ids, key=lambda team: champion_counts.get(team, 0))
+        representative_matches = representative_runs[modal_champion]
         versions = {
             "rules_version": self.simulator.rules.rules_version,
             "seed": str(seed),
         }
         return TournamentForecast(
             forecast_id=forecast_id,
-            matches=last_matches,
+            matches=representative_matches,
             team_probabilities=team_probabilities,
             simulation_runs=total_runs,
             seed=seed,
